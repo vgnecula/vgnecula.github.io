@@ -14,10 +14,10 @@ subtitleElement.style.opacity = 0;
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-function drawText(text, x, y, opacity) {
+function drawText(text, x, y, opacity, fontSize) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-    ctx.font = '20px Courier New';
+    ctx.font = `${fontSize}px 'Press Start 2P', cursive`;
     ctx.fillText(text, x, y);
 }
 
@@ -28,14 +28,14 @@ function drawCursor(x, y, visible) {
     }
 }
 
-function animateTextWithCursor(text, x, y, opacity, targetElement) {
+function animateTextWithCursor(text, x, y, opacity, targetElement, fontSize) {
     let index = 0;
     let cursorX = x;
     let cursorVisible = true;
 
     function typeNextLetter() {
         if (index <= text.length) {
-            drawText(text.substring(0, index), x, y, opacity);
+            drawText(text.substring(0, index), x, y, opacity, fontSize);
             drawCursor(cursorX, y, cursorVisible);
             cursorVisible = !cursorVisible;
             cursorX += ctx.measureText(text[index]).width + 10; // Adjusted for better spacing
@@ -59,9 +59,9 @@ function animateTextWithCursor(text, x, y, opacity, targetElement) {
 }
 
 // Start typing animation for the name with cursor
-animateTextWithCursor(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20, 0, nameElement);
+animateTextWithCursor(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20, 0, nameElement, 36);
 
 // Start typing animation for the subtitle with cursor after a delay
 setTimeout(() => {
-    animateTextWithCursor(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 20, 0, subtitleElement);
+    animateTextWithCursor(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 20, 0, subtitleElement, 18);
 }, 3000);
