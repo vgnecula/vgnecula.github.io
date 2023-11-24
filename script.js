@@ -3,6 +3,8 @@ const canvas = document.getElementById('pixelCanvas');
 const ctx = canvas.getContext('2d');
 const pixelSize = 10;
 const pixels = [];
+const nameText = "Vladimir Necula";
+const subtitleText = "Student @ Lafayette College";
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -30,20 +32,32 @@ function drawPixel(x, y, color) {
     ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
 }
 
-function animate() {
-    // Update pixel colors or positions based on your animation logic
-    pixels.forEach(pixel => {
-        // Example: Change color randomly 
-        pixel.color = getRandomColor();
+function animateName() {
+    let index = 0;
 
-        // Example: Move pixels to the right
-        pixel.x += 0.1;
-
-        // Reset pixel position when it goes off the screen
-        if (pixel.x > canvas.width / pixelSize) {
-            pixel.x = 0;
+    function typeNextLetter() {
+        if (index < nameText.length) {
+            drawText(nameText.substring(0, index + 1), canvas.width / 2 - 80, canvas.height / 2 - 20);
+            index++;
+            setTimeout(typeNextLetter, 100); // Adjust the typing speed by changing the timeout
         }
-    });
+    }
+
+    typeNextLetter();
+}
+
+function animateSubtitle() {
+    let index = 0;
+
+    function typeNextLetter() {
+        if (index < subtitleText.length) {
+            drawText(subtitleText.substring(0, index + 1), canvas.width / 2 - 80, canvas.height / 2 + 20);
+            index++;
+            setTimeout(typeNextLetter, 100); // Adjust the typing speed by changing the timeout
+        }
+    }
+
+    typeNextLetter();
 }
 
 function render() {
@@ -54,8 +68,6 @@ function render() {
         drawPixel(pixel.x, pixel.y, pixel.color);
     });
 
-    // Draw text
-    
     requestAnimationFrame(render);
 }
 
@@ -70,4 +82,6 @@ window.addEventListener('resize', () => {
     canvas.height = window.innerHeight;
 });
 
+animateName();
+animateSubtitle();
 render();
