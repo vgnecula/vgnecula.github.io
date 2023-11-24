@@ -55,9 +55,7 @@ function render() {
     });
 
     // Draw text
-    drawText('Your Name', canvas.width / 2 - 50, canvas.height / 2);
-    drawText('Web Developer', canvas.width / 2 - 70, canvas.height / 2 + 30);
-
+    
     requestAnimationFrame(render);
 }
 
