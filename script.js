@@ -30,7 +30,7 @@ function drawCursor(x, y, visible) {
 
 function animateTextWithCursor(text, x, y, opacity, targetElement) {
     let index = 0;
-    let cursorX = x; // Initialize cursor position
+    let cursorX = x;
     let cursorVisible = true;
 
     function typeNextLetter() {
@@ -38,9 +38,9 @@ function animateTextWithCursor(text, x, y, opacity, targetElement) {
             drawText(text.substring(0, index), x, y, opacity);
             drawCursor(cursorX, y, cursorVisible);
             cursorVisible = !cursorVisible;
-            cursorX += ctx.measureText(text[index]).width + 5; // Adjusted for better spacing
+            cursorX += ctx.measureText(text[index]).width + 10; // Adjusted for better spacing
             index++;
-            requestAnimationFrame(typeNextLetter);
+            setTimeout(typeNextLetter, 150); // Adjust the typing speed by changing the timeout
         }
     }
 
