@@ -21,14 +21,14 @@ function drawText(text, x, y, opacity, fontSize) {
     ctx.fillText(text, x, y);
 }
 
-function drawCursor(x, y, visible) {
+function drawFlickeringCursor(x, y, visible) {
     if (visible) {
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
         ctx.fillRect(x, y - 15, 2, 20);
     }
 }
 
-function animateTextWithCursor(text, x, y, opacity, targetElement, fontSize) {
+function animateTextWithFlickeringCursor(text, x, y, opacity, targetElement, fontSize) {
     let index = 0;
     let cursorX = x;
     let cursorVisible = true;
@@ -36,7 +36,7 @@ function animateTextWithCursor(text, x, y, opacity, targetElement, fontSize) {
     function typeNextLetter() {
         if (index <= text.length) {
             drawText(text.substring(0, index), x, y, opacity, fontSize);
-            drawCursor(cursorX, y, cursorVisible);
+            drawFlickeringCursor(cursorX, y, cursorVisible);
             cursorVisible = !cursorVisible;
             cursorX += ctx.measureText(text[index]).width + 10; // Adjusted for better spacing
             index++;
@@ -55,13 +55,13 @@ function animateTextWithCursor(text, x, y, opacity, targetElement, fontSize) {
     setTimeout(() => {
         targetElement.style.display = 'block';
         typeNextLetter();
-    }, 1000);
+    }, 2000); // Adjust the delay as needed
 }
 
-// Start typing animation for the name with cursor
-animateTextWithCursor(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20, 0, nameElement, 36);
+// Start typing animation for the name with flickering cursor
+animateTextWithFlickeringCursor(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20, 0, nameElement, 36);
 
-// Start typing animation for the subtitle with cursor after a delay
+// Start typing animation for the subtitle with flickering cursor after a delay
 setTimeout(() => {
-    animateTextWithCursor(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 20, 0, subtitleElement, 18);
-}, 3000);
+    animateTextWithFlickeringCursor(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 40, 0, subtitleElement, 18);
+}, 5000); // Adjust the delay between animations as needed
