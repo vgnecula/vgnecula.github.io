@@ -11,6 +11,7 @@ nameElement.style.opacity = 0;
 subtitleElement.style.opacity = 0;
 
 function drawTextWithCursor(text, x, y, opacity, targetElement, cursorVisible) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before redrawing
     ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
     ctx.font = '20px Courier New';
     ctx.fillText(text + (cursorVisible ? '|' : ''), x, y);
