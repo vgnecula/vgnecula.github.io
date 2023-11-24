@@ -32,12 +32,15 @@ function drawPixel(x, y, color) {
     ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
 }
 
+const nameElement = document.getElementById('name');
+const subtitleElement = document.getElementById('subtitle');
+
 function animateName() {
     let index = 0;
 
     function typeNextLetter() {
         if (index < nameText.length) {
-            drawText(nameText.substring(0, index + 1), canvas.width / 2 - 80, canvas.height / 2 - 20);
+            nameElement.innerHTML = nameText.substring(0, index + 1);
             index++;
             setTimeout(typeNextLetter, 100); // Adjust the typing speed by changing the timeout
         }
@@ -51,7 +54,7 @@ function animateSubtitle() {
 
     function typeNextLetter() {
         if (index < subtitleText.length) {
-            drawText(subtitleText.substring(0, index + 1), canvas.width / 2 - 80, canvas.height / 2 + 20);
+            subtitleElement.innerHTML = subtitleText.substring(0, index + 1);
             index++;
             setTimeout(typeNextLetter, 100); // Adjust the typing speed by changing the timeout
         }
@@ -59,6 +62,8 @@ function animateSubtitle() {
 
     typeNextLetter();
 }
+
+// ... (remaining code)
 
 function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
