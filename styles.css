@@ -32,7 +32,7 @@ canvas {
 
 #name,
 #subtitle {
-    opacity: 0; /* Set initial opacity to zero */
+    opacity: 1; /* Set initial opacity to zero */
 }
 
 #content h1,
