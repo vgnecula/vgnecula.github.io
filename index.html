@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Personal Website</title>
+    <title>Vladimir Necula</title>
     <style>
         body {
             margin: 0;
@@ -31,57 +31,84 @@
 <body>
     <canvas id="pixelCanvas"></canvas>
     <div id="content">
-        <h1 id="title">Your Name</h1>
+        <h1 id="title">Vladimir Necula</h1>
         <p id="subtitle">Web Developer</p>
     </div>
 
     <script>
-        const canvas = document.getElementById('pixelCanvas');
-        const ctx = canvas.getContext('2d');
-        const title = document.getElementById('title');
-        const subtitle = document.getElementById('subtitle');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const pixelSize = 10;
-
-        function drawPixel(x, y, color) {
-            ctx.fillStyle = color;
-            ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
-        }
-
-        function drawText(text, x, y) {
-            ctx.fillStyle = '#fff';
-            ctx.font = '20px Courier New';
-            ctx.fillText(text, x, y);
-        }
-
-        function animate() {
-            // Your animation logic goes here
-            // Example: Move pixels, change colors, etc.
-        }
-
-        function render() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Draw your animated pixels or background here
-
-            animate();
-
-            // Draw text
-            drawText('Your Name', canvas.width / 2 - 50, canvas.height / 2);
-            drawText('Web Developer', canvas.width / 2 - 70, canvas.height / 2 + 30);
-
-            requestAnimationFrame(render);
-        }
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        render();
-    </script>
+      const canvas = document.getElementById('pixelCanvas');
+      const ctx = canvas.getContext('2d');
+      const pixelSize = 10;
+      const pixels = [];
+  
+      // Initialize pixels with random positions and colors
+      for (let i = 0; i < 100; i++) {
+          pixels.push({
+              x: Math.random() * canvas.width / pixelSize,
+              y: Math.random() * canvas.height / pixelSize,
+              color: getRandomColor()
+          });
+      }
+  
+      function getRandomColor() {
+          const letters = '0123456789ABCDEF';
+          let color = '#';
+          for (let i = 0; i < 6; i++) {
+              color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+      }
+  
+      function animate() {
+          // Update pixel colors or positions based on your animation logic
+          pixels.forEach(pixel => {
+              // Example: Change color randomly 
+              pixel.color = getRandomColor();
+  
+              // Example: Move pixels to the right
+              pixel.x += 0.1;
+  
+              // Reset pixel position when it goes off the screen
+              if (pixel.x > canvas.width / pixelSize) {
+                  pixel.x = 0;
+              }
+          });
+      }
+  
+      function render() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+          // Draw your animated pixels or background here
+          animate();
+  
+          // Draw text
+          drawText('Your Name', canvas.width / 2 - 50, canvas.height / 2);
+          drawText('Web Developer', canvas.width / 2 - 70, canvas.height / 2 + 30);
+  
+          requestAnimationFrame(render);
+      }
+  
+      window.addEventListener('resize', () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          pixels.length = 0; // Clear the pixels array on resize
+          initializePixels();
+          render();
+      });
+  
+      function initializePixels() {
+          // Initialize pixels with random positions and colors
+          for (let i = 0; i < 100; i++) {
+              pixels.push({
+                  x: Math.random() * canvas.width / pixelSize,
+                  y: Math.random() * canvas.height / pixelSize,
+                  color: getRandomColor()
+              });
+          }
+      }
+  
+      initializePixels();
+      render();
+  </script>
 </body>
 </html>
