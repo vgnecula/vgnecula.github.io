@@ -32,47 +32,21 @@ function drawPixel(x, y, color) {
     ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
 }
 
-const nameElement = document.getElementById('name');
-const subtitleElement = document.getElementById('subtitle');
-
-function animateName() {
-    let index = 0;
-
-    function typeNextLetter() {
-        if (index < nameText.length) {
-            nameElement.innerHTML = nameText.substring(0, index + 1);
-            index++;
-            setTimeout(typeNextLetter, 100); // Adjust the typing speed by changing the timeout
+function animate() {
+    pixels.forEach(pixel => {
+        pixel.color = getRandomColor();
+        pixel.x += 0.1;
+        if (pixel.x > canvas.width / pixelSize) {
+            pixel.x = 0;
         }
-    }
-
-    typeNextLetter();
+    });
 }
-
-function animateSubtitle() {
-    let index = 0;
-
-    function typeNextLetter() {
-        if (index < subtitleText.length) {
-            subtitleElement.innerHTML = subtitleText.substring(0, index + 1);
-            index++;
-            setTimeout(typeNextLetter, 100); // Adjust the typing speed by changing the timeout
-        }
-    }
-
-    typeNextLetter();
-}
-
-// ... (remaining code)
 
 function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw your animated pixels or background here
     pixels.forEach(pixel => {
         drawPixel(pixel.x, pixel.y, pixel.color);
     });
-
     requestAnimationFrame(render);
 }
 
@@ -82,11 +56,26 @@ function drawText(text, x, y) {
     ctx.fillText(text, x, y);
 }
 
+function animateText(text, x, y) {
+    let index = 0;
+
+    function typeNextLetter() {
+        if (index < text.length) {
+            drawText(text.substring(0, index + 1), x, y);
+            index++;
+            setTimeout(typeNextLetter, 100); // Adjust the typing speed by changing the timeout
+        }
+    }
+
+    typeNextLetter();
+}
+
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 });
 
-animateName();
-animateSubtitle();
+animate(); // Start pixel animation
+animateText(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20); // Start typing name
+animateText(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 20); // Start typing subtitle
 render();
