@@ -10,11 +10,11 @@ const subtitleElement = document.getElementById('subtitle');
 nameElement.style.opacity = 0;
 subtitleElement.style.opacity = 0;
 
-// Set canvas size
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function drawText(text, opacity, fontSize) {
+    // Calculate the center dynamically based on the canvas size
+    const x = canvas.width / 2 - ctx.measureText(text).width / 2;
+    const y = canvas.height / 2 + fontSize / 2;
 
-function drawText(text, x, y, opacity, fontSize) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
     ctx.font = `${fontSize}px 'Press Start 2P', cursive`;
@@ -30,15 +30,15 @@ function drawPixelatedCursor(x, y, visible) {
     }
 }
 
-function animateTextWithPixelatedCursor(text, x, y, opacity, targetElement, fontSize) {
+function animateTextWithPixelatedCursor(text, opacity, targetElement, fontSize) {
     let index = 0;
-    let cursorX = x;
-    let cursorY = y - 15;
+    let cursorX = 0;
+    let cursorY = 0;
     let cursorVisible = true;
 
     function typeNextLetter() {
         if (index <= text.length) {
-            drawText(text.substring(0, index), x, y, opacity, fontSize);
+            drawText(text.substring(0, index), opacity, fontSize);
             drawPixelatedCursor(cursorX, cursorY, cursorVisible);
             cursorVisible = !cursorVisible;
             cursorX += ctx.measureText(text[index]).width; // Adjusted for better spacing
@@ -54,17 +54,26 @@ function animateTextWithPixelatedCursor(text, x, y, opacity, targetElement, font
         }
     }
 
-    // Display the target element after a delay
+    // Display the target element
+    targetElement.style.display = 'block';
+
+    // Start typing animation after a short delay
     setTimeout(() => {
-        targetElement.style.display = 'block';
         typeNextLetter();
     }, 2000); // Adjust the delay as needed
 }
 
 // Start typing animation for the name with pixelated cursor
-animateTextWithPixelatedCursor(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20, 0, nameElement, 36);
+animateTextWithPixelatedCursor(nameText, 0, nameElement, 36);
 
 // Start typing animation for the subtitle with pixelated cursor after a delay
-setTimeout(() => {
-    animateTextWithPixelatedCursor(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 40, 0, subtitleElement, 18);
-}, 5000); // Adjust the delay between animations as needed
+animateTextWithPixelatedCursor(subtitleText, 0, subtitleElement, 18);
+
+// Handle window resize to reposition the text
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    // Restart the animations with updated canvas size
+    animateTextWithPixelatedCursor(nameText, 0, nameElement, 36);
+    animateTextWithPixelatedCursor(subtitleText, 0, subtitleElement, 18);
+});
