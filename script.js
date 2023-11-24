@@ -50,18 +50,18 @@ function render() {
     requestAnimationFrame(render);
 }
 
-function drawText(text, x, y) {
-    ctx.fillStyle = '#fff';
+function drawText(text, x, y, opacity) {
+    ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
     ctx.font = '20px Courier New';
     ctx.fillText(text, x, y);
 }
 
-function animateText(text, x, y) {
+function animateText(text, x, y, opacity) {
     let index = 0;
 
     function typeNextLetter() {
         if (index < text.length) {
-            drawText(text.substring(0, index + 1), x, y);
+            drawText(text.substring(0, index + 1), x, y, opacity);
             index++;
             setTimeout(typeNextLetter, 100); // Adjust the typing speed by changing the timeout
         }
@@ -76,6 +76,6 @@ window.addEventListener('resize', () => {
 });
 
 animate(); // Start pixel animation
-setTimeout(() => animateText(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20), 1000); // Start typing name after a delay
-setTimeout(() => animateText(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 20), 2000); // Start typing subtitle after a delay
+setTimeout(() => animateText(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20, 1), 1000); // Start typing name after a delay with opacity 1
+setTimeout(() => animateText(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 20, 1), 2000); // Start typing subtitle after a delay with opacity 1
 render();
