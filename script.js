@@ -10,21 +10,22 @@ const subtitleElement = document.getElementById('subtitle');
 nameElement.style.opacity = 0;
 subtitleElement.style.opacity = 0;
 
-function drawText(text, x, y, opacity, targetElement) {
+function drawTextWithCursor(text, x, y, opacity, targetElement, cursorVisible) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before redrawing
     ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
     ctx.font = '20px Courier New';
-    ctx.fillText(text, x, y);
+    ctx.fillText(text + (cursorVisible ? '|' : ''), x, y);
 }
 
-function animateText(text, x, y, opacity, targetElement) {
+function animateTextWithCursor(text, x, y, opacity, targetElement) {
     let index = 0;
+    let cursorVisible = true;
 
     function typeNextLetter() {
-        if (index < text.length) {
-            targetElement.textContent = text.substring(0, index + 1);
+        if (index <= text.length) {
+            drawTextWithCursor(text.substring(0, index), x, y, opacity, targetElement, cursorVisible);
+            cursorVisible = !cursorVisible;
             index++;
-            opacity += 0.1; // Increase opacity gradually
-            targetElement.style.opacity = opacity; // Set the opacity
             setTimeout(typeNextLetter, 100); // Adjust the typing speed by changing the timeout
         }
     }
@@ -36,10 +37,10 @@ function animateText(text, x, y, opacity, targetElement) {
     }, 1000); // Adjust the delay as needed
 }
 
-// Start typing animation for the name
-animateText(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20, 0, nameElement);
+// Start typing animation for the name with cursor
+animateTextWithCursor(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20, 0, nameElement);
 
-// Start typing animation for the subtitle after a delay
+// Start typing animation for the subtitle with cursor after a delay
 setTimeout(() => {
-    animateText(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 20, 0, subtitleElement);
+    animateTextWithCursor(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 20, 0, subtitleElement);
 }, 1500); // Adjust the delay between animations as needed
