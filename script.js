@@ -76,6 +76,6 @@ window.addEventListener('resize', () => {
 });
 
 animate(); // Start pixel animation
-animateText(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20); // Start typing name
-animateText(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 20); // Start typing subtitle
+setTimeout(() => animateText(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20), 1000); // Start typing name after a delay
+setTimeout(() => animateText(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 20), 2000); // Start typing subtitle after a delay
 render();
