@@ -1,4 +1,3 @@
-/* styles.css */
 body {
     margin: 0;
     overflow: hidden;
@@ -31,7 +30,13 @@ canvas {
     z-index: 2;
 }
 
-#content h1, #content p {
+#name,
+#subtitle {
+    opacity: 0; /* Set initial opacity to zero */
+}
+
+#content h1,
+#content p {
     margin: 0;
 }
 
