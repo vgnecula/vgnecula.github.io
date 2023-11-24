@@ -1,6 +1,8 @@
 // script.js
 const canvas = document.getElementById('pixelCanvas');
 const ctx = canvas.getContext('2d');
+const nameText = "Vladimir Necula";
+const subtitleText = "Student @ Lafayette College";
 
 // Set initial opacity to 0
 const nameElement = document.getElementById('name');
@@ -8,7 +10,7 @@ const subtitleElement = document.getElementById('subtitle');
 nameElement.style.opacity = 0;
 subtitleElement.style.opacity = 0;
 
-function drawText(text, x, y, opacity) {
+function drawText(text, x, y, opacity, targetElement) {
     ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
     ctx.font = '20px Courier New';
     ctx.fillText(text, x, y);
@@ -34,6 +36,10 @@ function animateText(text, x, y, opacity, targetElement) {
     }, 1000); // Adjust the delay as needed
 }
 
-// Start typing animations for name and subtitle with their respective target elements
-animateText("Vladimir Necula", canvas.width / 2 - 80, canvas.height / 2 - 20, 0, nameElement);
-animateText("Student @ Lafayette College", canvas.width / 2 - 80, canvas.height / 2 + 20, 0, subtitleElement);
+// Start typing animation for the name
+animateText(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20, 0, nameElement);
+
+// Start typing animation for the subtitle after a delay
+setTimeout(() => {
+    animateText(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 20, 0, subtitleElement);
+}, 3000); // Adjust the delay between animations as needed

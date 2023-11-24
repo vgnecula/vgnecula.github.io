@@ -32,6 +32,14 @@ canvas {
     z-index: 3; /* Ensure text elements are in front of the canvas */
 }
 
+#name {
+    font-size: 36px; /* Adjust the font size for the name */
+}
+
+#subtitle {
+    font-size: 18px; /* Adjust the font size for the subtitle */
+}
+
 #content div {
     margin: 0;
     opacity: 0; /* Set initial opacity to 0 for fade-in effect */
