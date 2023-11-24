@@ -7,8 +7,7 @@ const subtitleText = "Student @ Lafayette College";
 // Set initial opacity to 0
 const nameElement = document.getElementById('name');
 const subtitleElement = document.getElementById('subtitle');
-nameElement.style.opacity = 0;
-subtitleElement.style.opacity = 0;
+nameElement.style.opacity = 1; // Set initial opacity to 1 for the name
 
 // Set canvas size
 canvas.width = window.innerWidth;
