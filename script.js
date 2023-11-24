@@ -31,9 +31,13 @@ function drawPixelatedCursor(x, y, visible) {
 }
 
 function animateTextWithPixelatedCursor(text, opacity, targetElement, fontSize) {
+    // Calculate the center dynamically based on the canvas size
+    const x = canvas.width / 2 - ctx.measureText(text).width / 2;
+    const y = canvas.height / 2 + fontSize / 2;
+
     let index = 0;
-    let cursorX = 0;
-    let cursorY = 0;
+    let cursorX = x;
+    let cursorY = y - 15;
     let cursorVisible = true;
 
     function typeNextLetter() {
