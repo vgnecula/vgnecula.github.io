@@ -38,7 +38,6 @@ function animateTextWithCursor(text, x, y, opacity, targetElement) {
     }, 1000); // Adjust the delay as needed
 }
 
-
 // Start typing animation for the name
 animateTextWithCursor(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20, 0, nameElement);
 
