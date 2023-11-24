@@ -1,16 +1,19 @@
+// script.js
 const canvas = document.getElementById('pixelCanvas');
 const ctx = canvas.getContext('2d');
+const pixelSize = 10;
 const pixels = [];
 
-function drawPixel(x, y, color) {
-    ctx.fillStyle = color;
-    ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
-}
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-function drawText(text, x, y) {
-    ctx.fillStyle = '#fff';
-    ctx.font = '20px Courier New';
-    ctx.fillText(text, x, y);
+// Initialize pixels with random positions and colors
+for (let i = 0; i < 100; i++) {
+    pixels.push({
+        x: Math.random() * canvas.width / pixelSize,
+        y: Math.random() * canvas.height / pixelSize,
+        color: getRandomColor()
+    });
 }
 
 function getRandomColor() {
@@ -22,27 +25,21 @@ function getRandomColor() {
     return color;
 }
 
-function initializePixels() {
-    for (let i = 0; i < 100; i++) {
-        pixels.push({
-            x: Math.random() * canvas.width / pixelSize,
-            y: Math.random() * canvas.height / pixelSize,
-            color: getRandomColor()
-        });
-    }
+function drawPixel(x, y, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize);
 }
 
-const pixelSize = Math.max(5, Math.min(15, Math.floor(window.innerWidth / 100)));
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-initializePixels();
-
 function animate() {
+    // Update pixel colors or positions based on your animation logic
     pixels.forEach(pixel => {
+        // Example: Change color randomly 
         pixel.color = getRandomColor();
+
+        // Example: Move pixels to the right
         pixel.x += 0.1;
+
+        // Reset pixel position when it goes off the screen
         if (pixel.x > canvas.width / pixelSize) {
             pixel.x = 0;
         }
@@ -52,37 +49,27 @@ function animate() {
 function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // Draw your animated pixels or background here
     pixels.forEach(pixel => {
         drawPixel(pixel.x, pixel.y, pixel.color);
     });
 
-    drawText('Web Developer', canvas.width / 2 - 70, canvas.height / 2 + 20);
+    // Draw text
+    drawText('Your Name', canvas.width / 2 - 50, canvas.height / 2);
+    drawText('Web Developer', canvas.width / 2 - 70, canvas.height / 2 + 30);
 
     requestAnimationFrame(render);
+}
+
+function drawText(text, x, y) {
+    ctx.fillStyle = '#fff';
+    ctx.font = '20px Courier New';
+    ctx.fillText(text, x, y);
 }
 
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    pixels.length = 0;
-    initializePixels();
-    animate();
-    render();
 });
 
-// Typing effect for the name
-const nameElement = document.getElementById('title');
-const nameText = "Vladimir Necula";
-let nameIndex = 0;
-
-function typeEffect() {
-    if (nameIndex < nameText.length) {
-        nameElement.textContent += nameText.charAt(nameIndex);
-        nameIndex++;
-        setTimeout(typeEffect, 100);
-    }
-}
-
-typeEffect();
-animate();
 render();
