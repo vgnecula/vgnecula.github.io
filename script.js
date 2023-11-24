@@ -10,8 +10,12 @@ const subtitleElement = document.getElementById('subtitle');
 nameElement.style.opacity = 0;
 subtitleElement.style.opacity = 0;
 
+// Set canvas size
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
 function drawText(text, x, y, opacity) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before redrawing
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
     ctx.font = '20px Courier New';
     ctx.fillText(text, x, y);
@@ -20,21 +24,23 @@ function drawText(text, x, y, opacity) {
 function drawCursor(x, y, visible) {
     if (visible) {
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-        ctx.fillRect(x, y - 15, 2, 20); // Adjust cursor size and position as needed
+        ctx.fillRect(x, y - 15, 2, 20);
     }
 }
 
 function animateTextWithCursor(text, x, y, opacity, targetElement) {
     let index = 0;
+    let cursorX = x; // Initialize cursor position
     let cursorVisible = true;
 
     function typeNextLetter() {
         if (index <= text.length) {
             drawText(text.substring(0, index), x, y, opacity);
+            drawCursor(cursorX, y, cursorVisible);
             cursorVisible = !cursorVisible;
-            drawCursor(x + ctx.measureText(text.substring(0, index)).width, y, cursorVisible);
+            cursorX += ctx.measureText(text[index]).width + 5; // Adjusted for better spacing
             index++;
-            requestAnimationFrame(typeNextLetter); // Use requestAnimationFrame for smoother animation
+            requestAnimationFrame(typeNextLetter);
         }
     }
 
@@ -42,7 +48,7 @@ function animateTextWithCursor(text, x, y, opacity, targetElement) {
     setTimeout(() => {
         targetElement.style.display = 'block';
         typeNextLetter();
-    }, 1000); // Adjust the delay as needed
+    }, 1000);
 }
 
 // Start typing animation for the name with cursor
@@ -51,4 +57,4 @@ animateTextWithCursor(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20, 0
 // Start typing animation for the subtitle with cursor after a delay
 setTimeout(() => {
     animateTextWithCursor(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 20, 0, subtitleElement);
-}, 3000); // Adjust the delay between animations as needed
+}, 3000);
