@@ -56,7 +56,7 @@ function drawText(text, x, y, opacity) {
     ctx.fillText(text, x, y);
 }
 
-function animateText(text, x, y, opacity) {
+function animateText(text, x, y, opacity, targetElement) {
     let index = 0;
 
     function typeNextLetter() {
@@ -67,7 +67,11 @@ function animateText(text, x, y, opacity) {
         }
     }
 
-    typeNextLetter();
+    // Display the target element after a delay
+    setTimeout(() => {
+        targetElement.style.display = 'block';
+        typeNextLetter();
+    }, 1000); // Adjust the delay as needed
 }
 
 window.addEventListener('resize', () => {
@@ -76,6 +80,12 @@ window.addEventListener('resize', () => {
 });
 
 animate(); // Start pixel animation
-setTimeout(() => animateText(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20, 1), 1000); // Start typing name after a delay with opacity 1
-setTimeout(() => animateText(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 20, 1), 2000); // Start typing subtitle after a delay with opacity 1
+
+const nameElement = document.getElementById('name'); // Reference to the name element
+const subtitleElement = document.getElementById('subtitle'); // Reference to the subtitle element
+
+// Start typing animations for name and subtitle with their respective target elements
+animateText(nameText, canvas.width / 2 - 80, canvas.height / 2 - 20, 1, nameElement);
+animateText(subtitleText, canvas.width / 2 - 80, canvas.height / 2 + 20, 1, subtitleElement);
+
 render();
