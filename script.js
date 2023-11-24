@@ -10,8 +10,7 @@ const subtitleElement = document.getElementById('subtitle');
 nameElement.style.opacity = 0;
 subtitleElement.style.opacity = 0;
 
-function drawText(text, x, y, opacity) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before redrawing
+function drawText(text, x, y, opacity, targetElement) {
     ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
     ctx.font = '20px Courier New';
     ctx.fillText(text, x, y);
@@ -21,18 +20,18 @@ function animateText(text, x, y, opacity, targetElement) {
     let index = 0;
 
     function typeNextLetter() {
-        if (index <= text.length) {
-            drawText(text.substring(0, index), x, y, opacity);
+        if (index < text.length) {
+            targetElement.textContent = text.substring(0, index + 1);
             index++;
+            opacity += 0.1; // Increase opacity gradually
+            targetElement.style.opacity = opacity; // Set the opacity
             setTimeout(typeNextLetter, 100); // Adjust the typing speed by changing the timeout
         }
     }
 
-    // Display the target element immediately
-    targetElement.style.display = 'block';
-
-    // Start typing animation after a delay
+    // Display the target element after a delay
     setTimeout(() => {
+        targetElement.style.display = 'block';
         typeNextLetter();
     }, 1000); // Adjust the delay as needed
 }
