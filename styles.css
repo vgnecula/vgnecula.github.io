@@ -3,7 +3,7 @@ body {
     margin: 0;
     overflow: hidden;
     font-family: 'Press Start 2P', cursive; /* Pixel font */
-    background: url('your-background.gif') center/cover no-repeat fixed; /* Replace 'your-background.gif' with your actual GIF */
+    background: url('background.gif') center/cover no-repeat fixed; /* Replace 'your-background.gif' with your actual GIF */
 }
 
 header {
