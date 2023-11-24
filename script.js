@@ -40,7 +40,14 @@ function animateTextWithCursor(text, x, y, opacity, targetElement) {
             cursorVisible = !cursorVisible;
             cursorX += ctx.measureText(text[index]).width + 10; // Adjusted for better spacing
             index++;
-            setTimeout(typeNextLetter, 150); // Adjust the typing speed by changing the timeout
+
+            // Increase opacity gradually
+            opacity += 0.05;
+            if (opacity > 1) {
+                opacity = 1;
+            }
+
+            requestAnimationFrame(typeNextLetter);
         }
     }
 
