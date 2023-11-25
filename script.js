@@ -14,9 +14,11 @@ function drawTextInDiv(text, element, opacity, fontSize) {
     element.classList.add('visible'); // Add a class to make the element visible
 }
 
-function drawCursor(x, y, visible) {
-    ctx.clearRect(x, y, 20000, 20000);
+function clearCanvas() {
+    ctx.clearRect(0, 0, pixelCanvas.width, pixelCanvas.height);
+}
 
+function drawCursor(x, y, visible) {
     if (visible) {
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
         ctx.fillRect(x, y - 8, 2, 16); // Adjusted position and size for better appearance
@@ -31,34 +33,37 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
 
     function typeNextLetter() {
         if (index < text.length) {
+            // Clear the entire canvas before drawing the new text and cursor
+            clearCanvas();
+
             // Create a span for the current letter
             const span = document.createElement('span');
             span.textContent = text[index];
-    
+
             // Set the font size for the span based on the element type
             span.style.fontSize = `${fontSize}px`;
-    
+
             // Append the span to the element
             element.appendChild(span);
-    
+
             // Get the position of the last letter in the div
             const lastLetterRect = span.getBoundingClientRect();
             const lastLetterLeft = lastLetterRect.left + window.scrollX;
             const lastLetterTop = lastLetterRect.top + window.scrollY;
-    
+
             // Update cursor position based on the last letter
             cursorX = lastLetterLeft + lastLetterRect.width + 10;
             cursorY = lastLetterTop + lastLetterRect.height / 2;
-    
+
             // Draw cursor
             drawCursor(cursorX, cursorY, cursorVisible);
-    
+
             cursorVisible = !cursorVisible;
-    
+
             setTimeout(() => {
                 requestAnimationFrame(typeNextLetter);
             }, 800); // Adjust the delay between letters
-    
+
             index++;
         } else {
             // Reset cursor visibility after the text is fully typed
@@ -67,7 +72,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             callback();
         }
     }
-    
+
     // Start typing animation after a short delay
     setTimeout(() => {
         typeNextLetter();
