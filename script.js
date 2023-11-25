@@ -66,7 +66,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
 
             setTimeout(() => {
                 requestAnimationFrame(typeNextLetter);
-            }, 800); // Adjust the delay between letters
+            }, 200); // Adjust the delay between letters
 
             index++;
         } else {
