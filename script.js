@@ -39,7 +39,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
     
             // Clear the previous cursor drawing
             ctx.clearRect(cursorX, cursorY - 8, 2, 16);
-    
+            console.log(cursorX);
             // Draw text
             drawTextInDiv(text.substring(0, index + 1), element, opacity, fontSize);
     
