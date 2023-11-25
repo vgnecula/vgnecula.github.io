@@ -15,7 +15,6 @@ function drawTextInDiv(text, element, opacity, fontSize) {
 }
 
 function drawCursor(x, y, visible) {
-    ctx.clearRect(x - 1, y - 9, 4, 18);
 
     if (visible) {
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
@@ -49,7 +48,8 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             // Update cursor position based on the last letter
             cursorX = lastLetterLeft + lastLetterRect.width + 10;
             cursorY = lastLetterTop + lastLetterRect.height / 2;
-    
+            
+
             // Draw cursor
             drawCursor(cursorX, cursorY, cursorVisible);
     
@@ -60,6 +60,9 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             }, 800); // Adjust the delay between letters
     
             index++;
+            // Erase
+            ctx.clearRect(cursorX, cursorY, 4, 18);
+
         } else {
             // Reset cursor visibility after the text is fully typed
             cursorVisible = true;
