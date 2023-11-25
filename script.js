@@ -32,8 +32,10 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             // Update cursor position based on the last letter and div position
             const lastLetterWidth = ctx.measureText(text[index]).width;
             const divRect = element.getBoundingClientRect();
-            cursorX = divRect.left + ctx.measureText(text.substring(0, index + 1)).width + 10;
-            cursorY = divRect.top + divRect.height / 2;
+            const divLeft = divRect.left + window.scrollX; // Adjust for window scroll
+            const divTop = divRect.top + window.scrollY;   // Adjust for window scroll
+            cursorX = divLeft + ctx.measureText(text.substring(0, index + 1)).width + 10;
+            cursorY = divTop + divRect.height / 2;
     
             // Clear the previous cursor drawing
             ctx.clearRect(cursorX, cursorY - 8, 2, 16);
@@ -55,6 +57,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             callback(); // Call the callback function when the animation is complete
         }
     }
+    
     
     
     
