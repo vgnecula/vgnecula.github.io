@@ -15,6 +15,8 @@ function drawTextInDiv(text, element, opacity, fontSize) {
 }
 
 function drawCursor(x, y, visible) {
+    ctx.clearRect(x - 1, y - 9, 4, 18);
+
     if (visible) {
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
         ctx.fillRect(x, y - 8, 2, 16); // Adjusted position and size for better appearance
@@ -63,18 +65,10 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-
     // Start typing animation after a short delay
     setTimeout(() => {
         typeNextLetter();
-    }, 2000); // Adjust the delay as needed
+    }, 1000); // Adjust the delay as needed
 }
 
 // Start typing animation for the name with pixelated cursor
