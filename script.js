@@ -25,10 +25,10 @@ function drawCursor(x, y, visible, fontSize) {
         const cursorHeight = 16 * (fontSize / 36); // Adjust the factor as needed
 
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-        ctx.fillRect(x, y - cursorHeight / 2, cursorWidth, cursorHeight);
+        ctx.fillRect(x, y, cursorWidth, cursorHeight);
+        console.log("Heig", cursorHeight, "Wid", cursorWidth);
     }
 }
-
 
 function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) {
     let index = 0;
@@ -36,7 +36,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
     let cursorY = element.offsetTop + element.offsetHeight / 2; // Initialize cursor Y position
     let cursorVisible = true;
 
-    function typeNextLetter() {
+    function typeNextLetter() {Z
         if (index < text.length) {
             // Clear the entire canvas before drawing the new text and cursor
             clearCanvas();
@@ -61,7 +61,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             cursorY = lastLetterTop + lastLetterRect.height / 2;
 
             // Draw cursor
-            drawCursor(cursorX, cursorY, cursorVisible);
+            drawCursor(cursorX, cursorY, cursorVisible, fontSize);
 
             cursorVisible = !cursorVisible;
 
@@ -73,7 +73,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
         } else {
             // Reset cursor visibility after the text is fully typed
             cursorVisible = true;
-            drawCursor(cursorX, cursorY, cursorVisible, fontSize);
+            drawCursor(cursorX, cursorY, cursorVisible);
             callback();
         }
     }
