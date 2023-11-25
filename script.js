@@ -1,19 +1,17 @@
 // script.js
 const nameElement = document.getElementById('name');
 const subtitleElement = document.getElementById('subtitle');
-const canvas = document.getElementById('pixelCanvas');
-const ctx = canvas.getContext('2d');
 
-function drawTextInDiv(text, element, opacity, fontSize, cursorX, cursorVisible) {
+function drawTextInDiv(text, element, opacity, fontSize) {
     element.style.opacity = opacity;
     element.style.fontSize = `${fontSize}px`;
     element.textContent = text;
-
-    // Draw cursor
-    drawCursor(cursorX, element.offsetTop + element.offsetHeight / 2, cursorVisible);
 }
 
 function drawCursor(x, y, visible) {
+    const canvas = document.getElementById('pixelCanvas');
+    const ctx = canvas.getContext('2d');
+    
     if (visible) {
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
         ctx.fillRect(x, y - 15, 2, 20);
@@ -22,12 +20,16 @@ function drawCursor(x, y, visible) {
 
 function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) {
     let index = 0;
-    let cursorX = element.offsetLeft; // Initialize cursor position
+    let cursorX = element.offsetLeft + element.offsetWidth; // Initialize cursor position at the end of the text
     let cursorVisible = true;
 
     function typeNextLetter() {
-        if (index <= text.length) {
-            drawTextInDiv(text.substring(0, index), element, opacity, fontSize, cursorX, cursorVisible);
+        if (index < text.length) {
+            // Draw text
+            drawTextInDiv(text.substring(0, index + 1), element, opacity, fontSize);
+
+            // Draw cursor
+            drawCursor(cursorX, element.offsetTop + element.offsetHeight / 2, cursorVisible);
 
             // Update cursor position
             cursorX += ctx.measureText(text[index]).width + 10; // Adjusted for better spacing
@@ -36,6 +38,9 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
 
             setTimeout(typeNextLetter, 150); // Adjust the typing speed by changing the timeout
         } else {
+            // Reset cursor visibility after the text is fully typed
+            cursorVisible = true;
+            drawCursor(cursorX, element.offsetTop + element.offsetHeight / 2, cursorVisible);
             callback(); // Call the callback function when animation is complete
         }
     }
