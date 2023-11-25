@@ -66,7 +66,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
 
             setTimeout(() => {
                 requestAnimationFrame(typeNextLetter);
-            }, 200); // Adjust the delay between letters
+            }, 80); // Adjust the delay between letters
 
             index++;
         } else {
@@ -83,7 +83,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
     // Start typing animation after a short delay
     setTimeout(() => {
         typeNextLetter();
-    }, 100); // Adjust the delay as needed
+    }, 80); // Adjust the delay as needed
 }
 
 // Start typing animation for the name with pixelated cursor
