@@ -13,7 +13,7 @@ function drawTextInDiv(text, element, opacity, fontSize) {
 function drawCursor(x, y, visible) {
     if (visible) {
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-        ctx.fillRect(x, y - 15, 2, 20);
+        ctx.fillRect(x, y - 8, 2, 16); // Adjusted position and size for better appearance
     }
 }
 
@@ -24,19 +24,20 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
     let cursorVisible = true;
 
     function typeNextLetter() {
-        if (index < text.length) {
+        if (index <= text.length) {
             // Draw text
-            drawTextInDiv(text.substring(0, index + 1), element, opacity, fontSize);
+            drawTextInDiv(text.substring(0, index), element, opacity, fontSize);
 
             // Draw cursor
             drawCursor(cursorX, cursorY, cursorVisible);
 
             // Update cursor position
-            cursorX += ctx.measureText(text[index]).width + 10; // Adjusted for better spacing
-            index++;
+            cursorX = element.offsetLeft + ctx.measureText(text.substring(0, index)).width + 10; // Adjusted for better spacing
+            cursorY = element.offsetTop + element.offsetHeight / 2; // Reset cursor Y position
             cursorVisible = !cursorVisible;
 
             setTimeout(typeNextLetter, 150); // Adjust the typing speed by changing the timeout
+            index++;
         } else {
             // Reset cursor visibility after the text is fully typed
             cursorVisible = true;
@@ -50,6 +51,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
         typeNextLetter();
     }, 2000); // Adjust the delay as needed
 }
+
 
 
 // Start typing animation for the name with pixelated cursor
