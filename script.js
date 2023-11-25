@@ -19,20 +19,20 @@ function drawCursor(x, y, visible) {
 
 function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) {
     let index = 0;
-    let cursorX = element.offsetLeft; // Initialize cursor position at the beginning of the text
+    let cursorX = element.offsetLeft + element.offsetWidth; // Initialize cursor position at the end of the text
     let cursorY = element.offsetTop + element.offsetHeight / 2; // Initialize cursor Y position
     let cursorVisible = true;
 
     function typeNextLetter() {
-        if (index <= text.length) {
+        if (index < text.length) {
             // Draw text
-            drawTextInDiv(text.substring(0, index), element, opacity, fontSize);
+            drawTextInDiv(text.substring(0, index + 1), element, opacity, fontSize);
 
             // Draw cursor
             drawCursor(cursorX, cursorY, cursorVisible);
 
             // Update cursor position
-            cursorX = element.offsetLeft + ctx.measureText(text.substring(0, index)).width + 10; // Adjusted for better spacing
+            cursorX = element.offsetLeft + ctx.measureText(text.substring(0, index + 1)).width + 10; // Adjusted for better spacing
             cursorY = element.offsetTop + element.offsetHeight / 2; // Reset cursor Y position
             cursorVisible = !cursorVisible;
 
@@ -51,6 +51,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
         typeNextLetter();
     }, 2000); // Adjust the delay as needed
 }
+
 
 
 
