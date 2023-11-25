@@ -58,7 +58,7 @@ function changeBackgroundAndSlide(callback) {
     setTimeout(() => {
         document.body.classList.remove('slide-animation');
         callback();
-    }, 1000);
+    }, 900);
 }
 
 
