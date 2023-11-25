@@ -33,8 +33,9 @@ canvas {
 }
 
 #name, #subtitle {
-    font-size: 20px;
-    opacity: 0; /* Set initial opacity to 0 for fade-in effect */
+    
+    display: block;
+    margin: 0 auto; /* Set initial opacity to 0 for fade-in effect */
 }
 
 nav {

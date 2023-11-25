@@ -1,6 +1,8 @@
 // script.js
 const nameElement = document.getElementById('name');
 const subtitleElement = document.getElementById('subtitle');
+const canvas = document.getElementById('pixelCanvas');
+const ctx = canvas.getContext('2d');
 
 function drawTextInDiv(text, element, opacity, fontSize, cursorX, cursorVisible) {
     element.style.opacity = opacity;
@@ -12,9 +14,6 @@ function drawTextInDiv(text, element, opacity, fontSize, cursorX, cursorVisible)
 }
 
 function drawCursor(x, y, visible) {
-    const canvas = document.getElementById('pixelCanvas');
-    const ctx = canvas.getContext('2d');
-    
     if (visible) {
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
         ctx.fillRect(x, y - 15, 2, 20);
@@ -37,7 +36,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
 
             setTimeout(typeNextLetter, 150); // Adjust the typing speed by changing the timeout
         } else {
-            callback(); // Call the callback function when animation is complete
+            callback(); // Call the callback function when the animation is complete
         }
     }
 
@@ -47,9 +46,9 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
     }, 2000); // Adjust the delay as needed
 }
 
-// Start typing animation for the name with pixelated cursor
+// Start typing animation for the name with a pixelated cursor
 animateTextWithCursorInDiv("Vladimir Necula", nameElement, 0, 36, () => {
-    // Start typing animation for the subtitle with pixelated cursor after a delay
+    // Start typing animation for the subtitle with a pixelated cursor after a delay
     animateTextWithCursorInDiv("Student @ Lafayette College", subtitleElement, 0, 18, () => {
         // Animation for both name and subtitle is complete
     });
@@ -59,7 +58,7 @@ animateTextWithCursorInDiv("Vladimir Necula", nameElement, 0, 36, () => {
 window.addEventListener('resize', () => {
     // Restart the animations with updated positions
     animateTextWithCursorInDiv("Vladimir Necula", nameElement, 0, 36, () => {
-        // Start typing animation for the subtitle with pixelated cursor after a delay
+        // Start typing animation for the subtitle with a pixelated cursor after a delay
         animateTextWithCursorInDiv("Student @ Lafayette College", subtitleElement, 0, 18, () => {
             // Animation for both name and subtitle is complete
         });
