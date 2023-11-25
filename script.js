@@ -32,8 +32,9 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             // Draw text
             drawTextInDiv(text.substring(0, index + 1), element, opacity, fontSize);
     
-            // Update cursor position
-            cursorX = element.offsetLeft + ctx.measureText(text.substring(0, index + 1)).width; // Adjusted for better spacing
+            // Update cursor position based on the last letter
+            const lastLetterWidth = ctx.measureText(text[index]).width;
+            cursorX = element.offsetLeft + element.offsetWidth + lastLetterWidth + 10; // Adjusted for better spacing
     
             // Draw cursor
             drawCursor(cursorX, cursorY, cursorVisible);
@@ -49,7 +50,8 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             drawCursor(cursorX, cursorY, cursorVisible);
             callback(); // Call the callback function when the animation is complete
         }
-    } 
+    }
+    
 
     // Start typing animation after a short delay
     setTimeout(() => {
