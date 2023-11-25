@@ -35,6 +35,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             const divTop = divRect.top + window.scrollY;   // Adjust for window scroll
             cursorX = divLeft + ctx.measureText(text.substring(0, index + 1)).width + 10;
             cursorY = divTop + divRect.height / 2;
+            console.log("divLeft: ", divRect.left , "  cursorX: ", cursorX);
     
             // Clear the previous cursor drawing and draw text
             ctx.clearRect(0, 0, pixelCanvas.width, pixelCanvas.height);
