@@ -67,3 +67,8 @@ nav a {
 nav a:hover {
     color: #42a5f5;
 }
+
+
+.slide-animation {
+    transition: background 1s ease;
+}

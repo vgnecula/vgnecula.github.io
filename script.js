@@ -4,34 +4,41 @@ const subtitleElement = document.getElementById('subtitle');
 const pixelCanvas = document.getElementById('pixelCanvas');
 const ctx = pixelCanvas.getContext('2d');
 const aboutLink = document.getElementById('aboutLink');
+const homeLink = document.getElementById('homeLink');
 
-// Set the canvas size based on the window's dimensions
 pixelCanvas.width = window.innerWidth;
 pixelCanvas.height = window.innerHeight;
 
-// Add event listener for the "About" link
 aboutLink.addEventListener('click', handleAboutLinkClick);
+homeLink.addEventListener('click', handleHomeLinkClick);
 
 function handleAboutLinkClick(event) {
-    event.preventDefault(); // Prevent the default behavior of the link
-
-    // Perform background image change and slide animation
-    changeBackgroundAndSlide();
+    event.preventDefault();
+    changeBackgroundAndSlide(() => {
+        aboutLink.textContent = 'Home';
+        homeLink.style.display = 'inline';
+    });
 }
 
-function changeBackgroundAndSlide() {
-    // Change the background image
-    document.body.style.background = "url('background_about.gif') center/cover no-repeat fixed";
+function handleHomeLinkClick(event) {
+    event.preventDefault();
+    document.body.style.background = "url('background.gif') center/cover no-repeat fixed";
+    homeLink.style.display = 'none';
+    aboutLink.textContent = 'About';
+}
 
-    // You can add a class to trigger a CSS animation for the slide effect
+function changeBackgroundAndSlide(callback) {
+    document.body.style.background = "url('background_about.gif') center/cover no-repeat fixed";
     document.body.classList.add('slide-animation');
 
-    // After a delay, remove the class to reset the background and animation
     setTimeout(() => {
-        document.body.style.background = "url('background.gif') center/cover no-repeat fixed";
         document.body.classList.remove('slide-animation');
-    }, 1000); // Adjust the delay as needed
+        callback();
+    }, 1000);
 }
+
+// ... (rest of the JavaScript remains the same)
+
 
 function drawTextInDiv(text, element, opacity, fontSize) {
     element.textContent = text;
