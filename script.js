@@ -33,7 +33,6 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
 
             // Update cursor position
             cursorX += ctx.measureText(text[index]).width + 10; // Adjusted for better spacing
-            cursorY = element.offsetTop + element.offsetHeight / 2; // Reset cursor Y position
             index++;
             cursorVisible = !cursorVisible;
 
@@ -42,7 +41,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             // Reset cursor visibility after the text is fully typed
             cursorVisible = true;
             drawCursor(cursorX, cursorY, cursorVisible);
-            callback(); // Call the callback function when animation is complete
+            callback(); // Call the callback function when the animation is complete
         }
     }
 
@@ -51,6 +50,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
         typeNextLetter();
     }, 2000); // Adjust the delay as needed
 }
+
 
 // Start typing animation for the name with pixelated cursor
 animateTextWithCursorInDiv("Vladimir Necula", nameElement, 1, 36, () => {
