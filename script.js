@@ -1,6 +1,8 @@
 // script.js
 const nameElement = document.getElementById('name');
 const subtitleElement = document.getElementById('subtitle');
+const canvas = document.getElementById('pixelCanvas');
+const ctx = canvas.getContext('2d');
 
 function drawTextInDiv(text, element, opacity, fontSize, cursorX, cursorVisible) {
     element.style.opacity = opacity;
@@ -12,9 +14,6 @@ function drawTextInDiv(text, element, opacity, fontSize, cursorX, cursorVisible)
 }
 
 function drawCursor(x, y, visible) {
-    const canvas = document.getElementById('pixelCanvas');
-    const ctx = canvas.getContext('2d');
-    
     if (visible) {
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
         ctx.fillRect(x, y - 15, 2, 20);
@@ -37,9 +36,6 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
 
             setTimeout(typeNextLetter, 150); // Adjust the typing speed by changing the timeout
         } else {
-            // Reset cursor visibility after the text is fully typed
-            cursorVisible = true;
-            drawTextInDiv(text, element, opacity, fontSize, cursorX, cursorVisible);
             callback(); // Call the callback function when animation is complete
         }
     }
