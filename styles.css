@@ -35,8 +35,11 @@ canvas {
 #name, #subtitle {
     
     display: block;
-    padding: 10%;
     margin: 0 auto; /* Set initial opacity to 0 for fade-in effect */
+}
+
+#name{
+    margin-bottom: 2%;
 }
 
 nav {

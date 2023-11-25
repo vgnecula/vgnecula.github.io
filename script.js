@@ -83,7 +83,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
     // Start typing animation after a short delay
     setTimeout(() => {
         typeNextLetter();
-    }, 80); // Adjust the delay as needed
+    }, 100); // Adjust the delay as needed
 }
 
 // Start typing animation for the name with pixelated cursor
