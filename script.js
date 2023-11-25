@@ -1,8 +1,10 @@
 // script.js
 const nameElement = document.getElementById('name');
 const subtitleElement = document.getElementById('subtitle');
+const canvas = document.getElementById('pixelCanvas');
 
 function drawTextInDiv(text, element, opacity, fontSize, cursorX, cursorVisible) {
+    const ctx = canvas.getContext('2d');
     element.style.opacity = opacity;
     element.style.fontSize = `${fontSize}px`;
     element.textContent = text;
@@ -12,9 +14,8 @@ function drawTextInDiv(text, element, opacity, fontSize, cursorX, cursorVisible)
 }
 
 function drawCursor(x, y, visible) {
-    const canvas = document.getElementById('pixelCanvas');
     const ctx = canvas.getContext('2d');
-
+    
     if (visible) {
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
         ctx.fillRect(x, y - 15, 2, 20);
@@ -22,6 +23,7 @@ function drawCursor(x, y, visible) {
 }
 
 function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) {
+    const ctx = canvas.getContext('2d');
     let index = 0;
     let cursorX = element.offsetLeft; // Initialize cursor position
     let cursorVisible = true;
