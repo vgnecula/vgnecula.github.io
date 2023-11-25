@@ -4,10 +4,11 @@ const ctx = canvas.getContext('2d');
 const nameText = "Vladimir Necula";
 const subtitleText = "Student @ Lafayette College";
 
-// Set initial opacity to 0
+// Set initial opacity to 0 for both name and subtitle
 const nameElement = document.getElementById('name');
 const subtitleElement = document.getElementById('subtitle');
-nameElement.style.opacity = 1; // Set initial opacity to 1 for the name
+nameElement.style.opacity = 1; // Set opacity to 1
+subtitleElement.style.opacity = 1; // Set opacity to 1
 
 // Set canvas size
 canvas.width = window.innerWidth;
@@ -71,9 +72,9 @@ const subtitleX = canvas.width / 2 - ctx.measureText(subtitleText).width / 2;
 const subtitleY = canvas.height / 2 + 20;
 
 // Start typing animation for the name with pixelated cursor
-animateTextWithPixelatedCursor(nameText, nameX, nameY, 0, nameElement, 36, () => {
+animateTextWithPixelatedCursor(nameText, nameX, nameY, nameElement.style.opacity, nameElement, 36, () => {
     // Start typing animation for the subtitle with pixelated cursor after a delay
-    animateTextWithPixelatedCursor(subtitleText, subtitleX, subtitleY, 0, subtitleElement, 18, () => {
+    animateTextWithPixelatedCursor(subtitleText, subtitleX, subtitleY, subtitleElement.style.opacity, subtitleElement, 18, () => {
         // Animation for both name and subtitle is complete
     });
 });
@@ -90,9 +91,9 @@ window.addEventListener('resize', () => {
     const subtitleY = canvas.height / 2 + 20;
 
     // Restart the animations with updated positions
-    animateTextWithPixelatedCursor(nameText, nameX, nameY, 0, nameElement, 36, () => {
+    animateTextWithPixelatedCursor(nameText, nameX, nameY, nameElement.style.opacity, nameElement, 36, () => {
         // Start typing animation for the subtitle with pixelated cursor after a delay
-        animateTextWithPixelatedCursor(subtitleText, subtitleX, subtitleY, 0, subtitleElement, 18, () => {
+        animateTextWithPixelatedCursor(subtitleText, subtitleX, subtitleY, subtitleElement.style.opacity, subtitleElement, 18, () => {
             // Animation for both name and subtitle is complete
         });
     });

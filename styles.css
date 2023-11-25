@@ -24,12 +24,17 @@ canvas {
 
 #content {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     color: #fff;
     z-index: 3; /* Ensure text elements are in front of the canvas */
+}
+
+#name,
+#subtitle {
+    display: block;
 }
 
 #name {
