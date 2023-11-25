@@ -4,13 +4,9 @@ const subtitleElement = document.getElementById('subtitle');
 const pixelCanvas = document.getElementById('pixelCanvas');
 const ctx = pixelCanvas.getContext('2d');
 
-function scaleCanvas() {
-    pixelCanvas.width = window.innerWidth;
-    pixelCanvas.height = window.innerHeight;
-}
-
-scaleCanvas();
-window.addEventListener('resize', scaleCanvas);
+// Set the canvas size based on the window's dimensions
+pixelCanvas.width = window.innerWidth;
+pixelCanvas.height = window.innerHeight;
 
 function drawTextInDiv(text, element, opacity, fontSize) {
     element.textContent = text;
@@ -61,24 +57,10 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
     }, 2000); // Adjust the delay as needed
 }
 
-
-
-
 // Start typing animation for the name with pixelated cursor
 animateTextWithCursorInDiv("Vladimir Necula", nameElement, 1, 36, () => {
     // Start typing animation for the subtitle with pixelated cursor after a delay
     animateTextWithCursorInDiv("Student @ Lafayette College", subtitleElement, 1, 18, () => {
         // Animation for both name and subtitle is complete
-    });
-});
-
-// Handle window resize to reposition the text
-window.addEventListener('resize', () => {
-    // Restart the animations with updated positions
-    animateTextWithCursorInDiv("Vladimir Necula", nameElement, 1, 36, () => {
-        // Start typing animation for the subtitle with pixelated cursor after a delay
-        animateTextWithCursorInDiv("Student @ Lafayette College", subtitleElement, 1, 18, () => {
-            // Animation for both name and subtitle is complete
-        });
     });
 });
