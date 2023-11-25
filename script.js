@@ -29,12 +29,15 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
 
     function typeNextLetter() {
         if (index < text.length) {
-            // Draw text
-            drawTextInDiv(text.substring(0, index + 1), element, opacity, fontSize);
+            // Create a span for the current letter
+            const span = document.createElement('span');
+            span.textContent = text[index];
+    
+            // Append the span to the element
+            element.appendChild(span);
     
             // Get the position of the last letter in the div
-            const lastLetter = element.lastChild;
-            const lastLetterRect = lastLetter.getBoundingClientRect();
+            const lastLetterRect = span.getBoundingClientRect();
             const lastLetterLeft = lastLetterRect.left + window.scrollX;
             const lastLetterTop = lastLetterRect.top + window.scrollY;
     
@@ -49,7 +52,8 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
     
             setTimeout(() => {
                 requestAnimationFrame(typeNextLetter);
-            }, 600); // Adjust the delay between letters
+            }, 800); // Adjust the delay between letters
+    
             index++;
         } else {
             // Reset cursor visibility after the text is fully typed
@@ -58,6 +62,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             callback();
         }
     }
+    
     
     
     
