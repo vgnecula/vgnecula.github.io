@@ -27,15 +27,16 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
         if (index < text.length) {
             // Draw text
             drawTextInDiv(text.substring(0, index + 1), element, opacity, fontSize);
-
+    
+            // Update cursor position
+            cursorX = element.offsetLeft + ctx.measureText(text.substring(0, index + 1)).width; // Adjusted for better spacing
+    
             // Draw cursor
             drawCursor(cursorX, cursorY, cursorVisible);
-
-            // Update cursor position
-            cursorX = element.offsetLeft + ctx.measureText(text.substring(0, index + 1)).width + 10; // Adjusted for better spacing
+    
             cursorY = element.offsetTop + element.offsetHeight / 2; // Reset cursor Y position
             cursorVisible = !cursorVisible;
-
+    
             setTimeout(typeNextLetter, 150); // Adjust the typing speed by changing the timeout
             index++;
         } else {
