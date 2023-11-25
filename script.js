@@ -19,7 +19,8 @@ function drawCursor(x, y, visible) {
 
 function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) {
     let index = 0;
-    let cursorX = element.offsetLeft + element.offsetWidth; // Initialize cursor position at the end of the text
+    let cursorX = element.offsetLeft; // Initialize cursor position at the beginning of the text
+    let cursorY = element.offsetTop + element.offsetHeight / 2; // Initialize cursor Y position
     let cursorVisible = true;
 
     function typeNextLetter() {
@@ -28,10 +29,11 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             drawTextInDiv(text.substring(0, index + 1), element, opacity, fontSize);
 
             // Draw cursor
-            drawCursor(cursorX, element.offsetTop + element.offsetHeight / 2, cursorVisible);
+            drawCursor(cursorX, cursorY, cursorVisible);
 
             // Update cursor position
             cursorX += ctx.measureText(text[index]).width + 10; // Adjusted for better spacing
+            cursorY = element.offsetTop + element.offsetHeight / 2; // Reset cursor Y position
             index++;
             cursorVisible = !cursorVisible;
 
@@ -39,7 +41,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
         } else {
             // Reset cursor visibility after the text is fully typed
             cursorVisible = true;
-            drawCursor(cursorX, element.offsetTop + element.offsetHeight / 2, cursorVisible);
+            drawCursor(cursorX, cursorY, cursorVisible);
             callback(); // Call the callback function when animation is complete
         }
     }
