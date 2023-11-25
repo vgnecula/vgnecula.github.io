@@ -4,24 +4,15 @@ const ctx = canvas.getContext('2d');
 const nameText = "Vladimir Necula";
 const subtitleText = "Student @ Lafayette College";
 
-// Set initial opacity to 0 for both name and subtitle
-const nameElement = document.getElementById('name');
-const subtitleElement = document.getElementById('subtitle');
-nameElement.style.opacity = 1; // Set opacity to 1
-subtitleElement.style.opacity = 1; // Set opacity to 1
-
 // Set canvas size
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-function drawText(text, x, y, opacity, fontSize, targetElement) {
+function drawText(text, x, y, opacity, fontSize) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
     ctx.font = `${fontSize}px 'Press Start 2P', cursive`;
     ctx.fillText(text, x, y);
-
-    // Set the text content and display for the respective HTML element
-    targetElement.textContent = text;
 }
 
 function drawPixelatedCursor(x, y, visible) {
@@ -33,7 +24,7 @@ function drawPixelatedCursor(x, y, visible) {
     }
 }
 
-function animateTextWithPixelatedCursor(text, x, y, opacity, targetElement, fontSize, callback) {
+function animateTextWithPixelatedCursor(text, x, y, opacity, fontSize, callback) {
     let index = 0;
     let cursorX = x;
     let cursorY = y - 15;
@@ -41,7 +32,7 @@ function animateTextWithPixelatedCursor(text, x, y, opacity, targetElement, font
 
     function typeNextLetter() {
         if (index <= text.length) {
-            drawText(text.substring(0, index), x, y, opacity, fontSize, targetElement);
+            drawText(text.substring(0, index), x, y, opacity, fontSize);
             drawPixelatedCursor(cursorX, cursorY, cursorVisible);
             cursorVisible = !cursorVisible;
             cursorX += ctx.measureText(text[index]).width; // Adjusted for better spacing
@@ -72,9 +63,9 @@ const subtitleX = canvas.width / 2 - ctx.measureText(subtitleText).width / 2;
 const subtitleY = canvas.height / 2 + 20;
 
 // Start typing animation for the name with pixelated cursor
-animateTextWithPixelatedCursor(nameText, nameX, nameY, nameElement.style.opacity, nameElement, 36, () => {
+animateTextWithPixelatedCursor(nameText, nameX, nameY, 0, 36, () => {
     // Start typing animation for the subtitle with pixelated cursor after a delay
-    animateTextWithPixelatedCursor(subtitleText, subtitleX, subtitleY, subtitleElement.style.opacity, subtitleElement, 18, () => {
+    animateTextWithPixelatedCursor(subtitleText, subtitleX, subtitleY, 0, 18, () => {
         // Animation for both name and subtitle is complete
     });
 });
@@ -91,9 +82,9 @@ window.addEventListener('resize', () => {
     const subtitleY = canvas.height / 2 + 20;
 
     // Restart the animations with updated positions
-    animateTextWithPixelatedCursor(nameText, nameX, nameY, nameElement.style.opacity, nameElement, 36, () => {
+    animateTextWithPixelatedCursor(nameText, nameX, nameY, 0, 36, () => {
         // Start typing animation for the subtitle with pixelated cursor after a delay
-        animateTextWithPixelatedCursor(subtitleText, subtitleX, subtitleY, subtitleElement.style.opacity, subtitleElement, 18, () => {
+        animateTextWithPixelatedCursor(subtitleText, subtitleX, subtitleY, 0, 18, () => {
             // Animation for both name and subtitle is complete
         });
     });
