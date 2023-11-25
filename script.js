@@ -15,7 +15,7 @@ function drawTextInDiv(text, element, opacity, fontSize) {
 }
 
 function drawCursor(x, y, visible) {
-    ctx.clearRect(x, y, 1000, 1000);
+    ctx.clearRect(x, y, 20000, 20000);
 
     if (visible) {
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
