@@ -2,32 +2,40 @@
 const nameElement = document.getElementById('name');
 const subtitleElement = document.getElementById('subtitle');
 
-function drawTextInDiv(text, element, opacity, fontSize, callback) {
+function drawTextInDiv(text, element, opacity, fontSize, cursorX, cursorVisible) {
     element.style.opacity = opacity;
     element.style.fontSize = `${fontSize}px`;
     element.textContent = text;
 
-    // Callback when animation is complete
-    if (callback) {
-        callback();
+    // Draw cursor
+    drawCursor(cursorX, element.offsetTop + element.offsetHeight / 2, cursorVisible);
+}
+
+function drawCursor(x, y, visible) {
+    const canvas = document.getElementById('pixelCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    if (visible) {
+        ctx.fillStyle = 'rgba(255, 255, 255, 1)';
+        ctx.fillRect(x, y - 15, 2, 20);
     }
 }
 
 function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) {
     let index = 0;
+    let cursorX = element.offsetLeft; // Initialize cursor position
+    let cursorVisible = true;
 
     function typeNextLetter() {
         if (index <= text.length) {
-            drawTextInDiv(text.substring(0, index), element, opacity, fontSize);
+            drawTextInDiv(text.substring(0, index), element, opacity, fontSize, cursorX, cursorVisible);
+
+            // Update cursor position
+            cursorX += ctx.measureText(text[index]).width + 10; // Adjusted for better spacing
             index++;
+            cursorVisible = !cursorVisible;
 
-            // Increase opacity gradually
-            opacity += 0.05;
-            if (opacity > 1) {
-                opacity = 1;
-            }
-
-            requestAnimationFrame(typeNextLetter);
+            setTimeout(typeNextLetter, 150); // Adjust the typing speed by changing the timeout
         } else {
             callback(); // Call the callback function when animation is complete
         }
