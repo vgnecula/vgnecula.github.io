@@ -29,13 +29,13 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
 
     function typeNextLetter() {
         if (index < text.length) {
-            // Update cursor position based on the last letter and div position
+            // Update cursor position based on the current letter and div position
             const divRect = element.getBoundingClientRect();
             const divLeft = divRect.left + window.scrollX; // Adjust for window scroll
             const divTop = divRect.top + window.scrollY;   // Adjust for window scroll
-            cursorX = divLeft + ctx.measureText(text.substring(0, index + 1)).width + 10;
+            const letterWidth = ctx.measureText(text[index]).width;
+            cursorX = divLeft + ctx.measureText(text.substring(0, index + 1)).width - letterWidth + 10;
             cursorY = divTop + divRect.height / 2;
-            console.log("divLeft: ", divRect.left , "  cursorX: ", cursorX);
     
             // Clear the previous cursor drawing and draw text
             ctx.clearRect(0, 0, pixelCanvas.width, pixelCanvas.height);
@@ -57,6 +57,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             callback(); // Call the callback function when the animation is complete
         }
     }
+    
     
     
     
