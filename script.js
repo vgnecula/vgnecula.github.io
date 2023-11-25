@@ -93,3 +93,5 @@ animateTextWithCursorInDiv("Vladimir Necula", nameElement, 1, 36, () => {
         // Animation for both name and subtitle is complete
     });
 });
+
+clearCanvas();
