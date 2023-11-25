@@ -18,12 +18,17 @@ function clearCanvas() {
     ctx.clearRect(0, 0, pixelCanvas.width, pixelCanvas.height);
 }
 
-function drawCursor(x, y, visible) {
+function drawCursor(x, y, visible, fontSize) {
     if (visible) {
+        // Adjust the cursor size based on the font size
+        const cursorWidth = 2 * (fontSize / 36); // Adjust the factor as needed
+        const cursorHeight = 16 * (fontSize / 36); // Adjust the factor as needed
+
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-        ctx.fillRect(x, y - 8, 2, 16); // Adjusted position and size for better appearance
+        ctx.fillRect(x, y - cursorHeight / 2, cursorWidth, cursorHeight);
     }
 }
+
 
 function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) {
     let index = 0;
@@ -68,7 +73,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
         } else {
             // Reset cursor visibility after the text is fully typed
             cursorVisible = true;
-            drawCursor(cursorX, cursorY, cursorVisible);
+            drawCursor(cursorX, cursorY, cursorVisible, fontSize);
             callback();
         }
     }
