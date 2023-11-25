@@ -17,7 +17,7 @@ function drawTextInDiv(text, element, opacity, fontSize) {
 function drawCursor(x, y, visible) {
     if (visible) {
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-        ctx.fillRect(x, y, 2, 16); // Adjusted position and size for better appearance
+        ctx.fillRect(x, y - 8, 2, 16); // Adjusted position and size for better appearance
     }
 }
 
@@ -38,7 +38,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             cursorY = divTop + divRect.height / 2;
     
             // Clear the previous cursor drawing
-            ctx.clearRect(cursorX, cursorY, 2, 16);
+            ctx.clearRect(cursorX, cursorY - 8, 2, 16);
     
             // Draw text
             drawTextInDiv(text.substring(0, index + 1), element, opacity, fontSize);
