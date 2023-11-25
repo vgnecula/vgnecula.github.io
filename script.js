@@ -21,10 +21,10 @@ function clearCanvas() {
 function drawCursor(x, y, visible, fontSize) {
     if (visible) {
         // Adjust the cursor size based on the font size
-        const cursorSize = 16 * (fontSize / 36); // Adjust the factor as needed
+        const cursorSize = 2 * (fontSize); // Adjust the factor as needed
 
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-        ctx.fillRect(x, y - cursorSize / 2, 2, cursorSize);
+        ctx.fillRect(x, y, 2, cursorSize);
         
     }
 }
