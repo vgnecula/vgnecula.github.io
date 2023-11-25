@@ -3,7 +3,7 @@ body {
     margin: 0;
     overflow: hidden;
     font-family: 'Press Start 2P', cursive; /* Pixel font */
-    background: url('background.gif') center/cover no-repeat fixed; /* Replace 'your-background.gif' with your actual GIF */
+    background: url('background.gif') center/cover no-repeat fixed;
 }
 
 header {
@@ -19,12 +19,12 @@ canvas {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 2; /* Ensure canvas is behind text elements */
+    z-index: 2;
 }
 
 #content {
     position: absolute;
-    top: 50%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -32,23 +32,9 @@ canvas {
     z-index: 3; /* Ensure text elements are in front of the canvas */
 }
 
-#name,
-#subtitle {
-    display: block;
-}
-
-#name {
-    font-size: 36px; /* Adjust the font size for the name */
-}
-
-#subtitle {
-    font-size: 18px; /* Adjust the font size for the subtitle */
-}
-
-#content div {
-    margin: 0;
+#name, #subtitle {
+    font-size: 20px;
     opacity: 0; /* Set initial opacity to 0 for fade-in effect */
-    display: none; /* Hide initially, show after a delay in JavaScript */
 }
 
 nav {
