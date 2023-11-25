@@ -47,7 +47,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
     
             setTimeout(() => {
                 requestAnimationFrame(typeNextLetter); // Use requestAnimationFrame for smoother animation
-            }, 150); // Adjust the delay between letters
+            }, 800); // Adjust the delay between letters
             index++;
         } else {
             // Reset cursor visibility after the text is fully typed
