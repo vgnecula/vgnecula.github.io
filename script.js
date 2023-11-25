@@ -4,10 +4,6 @@ const ctx = canvas.getContext('2d');
 const nameText = "Vladimir Necula";
 const subtitleText = "Student @ Lafayette College";
 
-// Set canvas size
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
 function drawText(text, x, y, opacity, fontSize) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
@@ -57,15 +53,15 @@ function animateTextWithPixelatedCursor(text, x, y, opacity, fontSize, callback)
 }
 
 // Calculate the center dynamically based on the canvas size
-const nameX = canvas.width / 2 - ctx.measureText(nameText).width / 2;
-const nameY = canvas.height / 2 - 20;
-const subtitleX = canvas.width / 2 - ctx.measureText(subtitleText).width / 2;
-const subtitleY = canvas.height / 2 + 20;
+const center = {
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+};
 
 // Start typing animation for the name with pixelated cursor
-animateTextWithPixelatedCursor(nameText, nameX, nameY, 0, 36, () => {
+animateTextWithPixelatedCursor(nameText, center.x, center.y - 20, 0, 36, () => {
     // Start typing animation for the subtitle with pixelated cursor after a delay
-    animateTextWithPixelatedCursor(subtitleText, subtitleX, subtitleY, 0, 18, () => {
+    animateTextWithPixelatedCursor(subtitleText, center.x, center.y + 20, 0, 18, () => {
         // Animation for both name and subtitle is complete
     });
 });
@@ -74,17 +70,13 @@ animateTextWithPixelatedCursor(nameText, nameX, nameY, 0, 36, () => {
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
-    // Recalculate the center dynamically based on the updated canvas size
-    const nameX = canvas.width / 2 - ctx.measureText(nameText).width / 2;
-    const nameY = canvas.height / 2 - 20;
-    const subtitleX = canvas.width / 2 - ctx.measureText(subtitleText).width / 2;
-    const subtitleY = canvas.height / 2 + 20;
+    center.x = canvas.width / 2;
+    center.y = canvas.height / 2;
 
     // Restart the animations with updated positions
-    animateTextWithPixelatedCursor(nameText, nameX, nameY, 0, 36, () => {
+    animateTextWithPixelatedCursor(nameText, center.x, center.y - 20, 0, 36, () => {
         // Start typing animation for the subtitle with pixelated cursor after a delay
-        animateTextWithPixelatedCursor(subtitleText, subtitleX, subtitleY, 0, 18, () => {
+        animateTextWithPixelatedCursor(subtitleText, center.x, center.y + 20, 0, 18, () => {
             // Animation for both name and subtitle is complete
         });
     });
