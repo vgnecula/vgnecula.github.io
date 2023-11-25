@@ -32,6 +32,10 @@ function handleNavLinkClick(event) {
     switch (event.target.id) {
         case 'homeLink':
             // Handle home link actions
+            changeBackgroundAndSlide(() => {
+                aboutLink.textContent = 'About';
+                homeLink.style.display = 'none';
+            });
             break;
         case 'aboutLink':
             // Handle about link actions
@@ -58,7 +62,7 @@ function changeBackgroundAndSlide(callback) {
     setTimeout(() => {
         document.body.classList.remove('slide-animation');
         callback();
-    }, 900);
+    }, 1000);
 }
 
 
