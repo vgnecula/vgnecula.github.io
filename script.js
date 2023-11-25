@@ -35,6 +35,9 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             const span = document.createElement('span');
             span.textContent = text[index];
     
+            // Set the font size for the span based on the element type
+            span.style.fontSize = `${fontSize}px`;
+    
             // Append the span to the element
             element.appendChild(span);
     
