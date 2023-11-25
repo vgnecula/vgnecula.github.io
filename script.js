@@ -32,14 +32,14 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             // Draw text
             drawTextInDiv(text.substring(0, index + 1), element, opacity, fontSize);
     
-            // Update cursor position based on the last letter
+            // Update cursor position based on the last letter and div position
             const lastLetterWidth = ctx.measureText(text[index]).width;
-            cursorX = element.offsetLeft + element.offsetWidth + lastLetterWidth + 10; // Adjusted for better spacing
+            const divRect = element.getBoundingClientRect();
+            cursorX = divRect.left + ctx.measureText(text.substring(0, index + 1)).width + 10;
+            cursorY = divRect.top + divRect.height / 2;
     
             // Draw cursor
             drawCursor(cursorX, cursorY, cursorVisible);
-    
-            cursorY = element.offsetTop + element.offsetHeight / 2; // Set cursor Y position to the middle of the element
     
             cursorVisible = !cursorVisible;
     
