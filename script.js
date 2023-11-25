@@ -72,7 +72,10 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
         } else {
             // Reset cursor visibility after the text is fully typed
             cursorVisible = true;
+            
             drawCursor(cursorX, cursorY, cursorVisible);
+
+            clearCanvas();
             callback();
         }
     }
