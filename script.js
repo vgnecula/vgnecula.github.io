@@ -30,17 +30,14 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
     function typeNextLetter() {
         if (index < text.length) {
             // Update cursor position based on the last letter and div position
-            
             const divRect = element.getBoundingClientRect();
             const divLeft = divRect.left + window.scrollX; // Adjust for window scroll
             const divTop = divRect.top + window.scrollY;   // Adjust for window scroll
             cursorX = divLeft + ctx.measureText(text.substring(0, index + 1)).width + 10;
             cursorY = divTop + divRect.height / 2;
     
-            // Clear the previous cursor drawing
-            ctx.clearRect(cursorX, cursorY - 8, 2, 16);
-            console.log(cursorX);
-            // Draw text
+            // Clear the previous cursor drawing and draw text
+            ctx.clearRect(0, 0, pixelCanvas.width, pixelCanvas.height);
             drawTextInDiv(text.substring(0, index + 1), element, opacity, fontSize);
     
             // Draw cursor
@@ -48,7 +45,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
     
             cursorVisible = !cursorVisible;
     
-            setTimeout(typeNextLetter, 150); // Adjust the typing speed by changing the timeout
+            requestAnimationFrame(typeNextLetter); // Use requestAnimationFrame for smoother animation
             index++;
         } else {
             // Reset cursor visibility after the text is fully typed
@@ -57,6 +54,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             callback(); // Call the callback function when the animation is complete
         }
     }
+    
     
     
     
