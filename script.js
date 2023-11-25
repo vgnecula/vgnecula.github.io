@@ -3,28 +3,52 @@ const nameElement = document.getElementById('name');
 const subtitleElement = document.getElementById('subtitle');
 const pixelCanvas = document.getElementById('pixelCanvas');
 const ctx = pixelCanvas.getContext('2d');
+const navLinks = document.querySelectorAll('.nav-link');
 const aboutLink = document.getElementById('aboutLink');
 const homeLink = document.getElementById('homeLink');
+const portfolioLink = document.getElementById('portfolioLink');
+const contactLink = document.getElementById('contactLink');
 
 pixelCanvas.width = window.innerWidth;
 pixelCanvas.height = window.innerHeight;
 
-aboutLink.addEventListener('click', handleAboutLinkClick);
-homeLink.addEventListener('click', handleHomeLinkClick);
+// Add click event listeners to all nav links
+navLinks.forEach(link => {
+    link.addEventListener('click', handleNavLinkClick);
+});
 
-function handleAboutLinkClick(event) {
+function handleNavLinkClick(event) {
     event.preventDefault();
-    changeBackgroundAndSlide(() => {
-        aboutLink.textContent = 'Home';
-        homeLink.style.display = 'inline';
+
+    // Remove underline from all links
+    navLinks.forEach(link => {
+        link.classList.remove('underline');
     });
-}
 
-function handleHomeLinkClick(event) {
-    event.preventDefault();
-    document.body.style.background = "url('background.gif') center/cover no-repeat fixed";
-    homeLink.style.display = 'none';
-    aboutLink.textContent = 'About';
+    // Add underline to the clicked link
+    event.target.classList.add('underline');
+
+    // Handle specific link actions based on their IDs
+    switch (event.target.id) {
+        case 'homeLink':
+            // Handle home link actions
+            break;
+        case 'aboutLink':
+            // Handle about link actions
+            changeBackgroundAndSlide(() => {
+                aboutLink.textContent = 'Home';
+                homeLink.style.display = 'inline';
+            });
+            break;
+        case 'portfolioLink':
+            // Handle portfolio link actions
+            break;
+        case 'contactLink':
+            // Handle contact link actions
+            break;
+        default:
+            break;
+    }
 }
 
 function changeBackgroundAndSlide(callback) {
@@ -34,8 +58,9 @@ function changeBackgroundAndSlide(callback) {
     setTimeout(() => {
         document.body.classList.remove('slide-animation');
         callback();
-    }, 900);
+    }, 1000);
 }
+
 
 // ... (rest of the JavaScript remains the same)
 
