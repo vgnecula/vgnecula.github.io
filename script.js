@@ -39,7 +39,8 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             // Draw cursor
             drawCursor(cursorX, cursorY, cursorVisible);
     
-            cursorY = element.offsetTop + element.offsetHeight / 2; // Reset cursor Y position
+            cursorY = element.offsetTop + element.offsetHeight / 2; // Set cursor Y position to the middle of the element
+    
             cursorVisible = !cursorVisible;
     
             setTimeout(typeNextLetter, 150); // Adjust the typing speed by changing the timeout
@@ -51,6 +52,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             callback(); // Call the callback function when the animation is complete
         }
     }
+    
     
 
     // Start typing animation after a short delay
