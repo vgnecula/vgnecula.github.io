@@ -17,7 +17,7 @@ function drawTextInDiv(text, element, opacity, fontSize) {
 function drawCursor(x, y, visible) {
     if (visible) {
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-        ctx.fillRect(x, y - 8, 2, 16); // Adjusted position and size for better appearance
+        ctx.fillRect(x, y, 0, 0); // Adjusted position and size for better appearance
     }
 }
 
@@ -30,7 +30,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
     function typeNextLetter() {
         if (index < text.length) {
             // Update cursor position based on the last letter and div position
-            const lastLetterWidth = ctx.measureText(text[index]).width;
+            
             const divRect = element.getBoundingClientRect();
             const divLeft = divRect.left + window.scrollX; // Adjust for window scroll
             const divTop = divRect.top + window.scrollY;   // Adjust for window scroll
@@ -38,7 +38,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             cursorY = divTop + divRect.height / 2;
     
             // Clear the previous cursor drawing
-            ctx.clearRect(cursorX, cursorY - 8, 2, 16);
+            ctx.clearRect(cursorX, cursorY, 0, 0);
     
             // Draw text
             drawTextInDiv(text.substring(0, index + 1), element, opacity, fontSize);
