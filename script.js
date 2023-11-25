@@ -4,6 +4,14 @@ const subtitleElement = document.getElementById('subtitle');
 const pixelCanvas = document.getElementById('pixelCanvas');
 const ctx = pixelCanvas.getContext('2d');
 
+function scaleCanvas() {
+    pixelCanvas.width = window.innerWidth;
+    pixelCanvas.height = window.innerHeight;
+}
+
+scaleCanvas();
+window.addEventListener('resize', scaleCanvas);
+
 function drawTextInDiv(text, element, opacity, fontSize) {
     element.textContent = text;
     element.style.fontSize = `${fontSize}px`;
@@ -45,7 +53,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             drawCursor(cursorX, cursorY, cursorVisible);
             callback(); // Call the callback function when the animation is complete
         }
-    }
+    } 
 
     // Start typing animation after a short delay
     setTimeout(() => {
