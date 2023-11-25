@@ -25,7 +25,7 @@ function drawCursor(x, y, visible, fontSize) {
 
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
         ctx.fillRect(x, y - cursorSize / 2, 2, cursorSize);
-        console.log("Heig", cursorHeight, "Wid", cursorWidth);
+        
     }
 }
 
