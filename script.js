@@ -21,10 +21,10 @@ function clearCanvas() {
 function drawCursor(x, y, visible, fontSize) {
     if (visible) {
         // Adjust the cursor size based on the font size
-        const cursorSize = 2 * (fontSize); // Adjust the factor as needed
+        const cursorSize = (fontSize); // Adjust the factor as needed
 
         ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-        ctx.fillRect(x, y, 2, cursorSize);
+        ctx.fillRect(x-cursorSize/2, y-cursorSize/2, 2, cursorSize);
         
     }
 }
@@ -80,7 +80,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
     // Start typing animation after a short delay
     setTimeout(() => {
         typeNextLetter();
-    }, 1000); // Adjust the delay as needed
+    }, 400); // Adjust the delay as needed
 }
 
 // Start typing animation for the name with pixelated cursor
