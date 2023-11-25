@@ -29,17 +29,18 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
 
     function typeNextLetter() {
         if (index < text.length) {
-            // Update cursor position based on the current letter and div position
-            const divRect = element.getBoundingClientRect();
-            const divLeft = divRect.left + window.scrollX; // Adjust for window scroll
-            const divTop = divRect.top + window.scrollY;   // Adjust for window scroll
-            const letterWidth = ctx.measureText(text[index]).width;
-            cursorX = divLeft + ctx.measureText(text.substring(0, index + 1)).width - letterWidth + 10;
-            cursorY = divTop + divRect.height / 2;
-    
-            // Clear the previous cursor drawing and draw text
-            ctx.clearRect(0, 0, pixelCanvas.width, pixelCanvas.height);
+            // Draw text
             drawTextInDiv(text.substring(0, index + 1), element, opacity, fontSize);
+    
+            // Get the position of the last letter in the div
+            const lastLetter = element.lastChild;
+            const lastLetterRect = lastLetter.getBoundingClientRect();
+            const lastLetterLeft = lastLetterRect.left + window.scrollX;
+            const lastLetterTop = lastLetterRect.top + window.scrollY;
+    
+            // Update cursor position based on the last letter
+            cursorX = lastLetterLeft + lastLetterRect.width + 10;
+            cursorY = lastLetterTop + lastLetterRect.height / 2;
     
             // Draw cursor
             drawCursor(cursorX, cursorY, cursorVisible);
@@ -47,16 +48,17 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
             cursorVisible = !cursorVisible;
     
             setTimeout(() => {
-                requestAnimationFrame(typeNextLetter); // Use requestAnimationFrame for smoother animation
-            }, 800); // Adjust the delay between letters
+                requestAnimationFrame(typeNextLetter);
+            }, 600); // Adjust the delay between letters
             index++;
         } else {
             // Reset cursor visibility after the text is fully typed
             cursorVisible = true;
             drawCursor(cursorX, cursorY, cursorVisible);
-            callback(); // Call the callback function when the animation is complete
+            callback();
         }
     }
+    
     
     
     
