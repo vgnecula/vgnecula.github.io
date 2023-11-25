@@ -36,7 +36,7 @@ function animateTextWithCursorInDiv(text, element, opacity, fontSize, callback) 
     let cursorY = element.offsetTop + element.offsetHeight / 2; // Initialize cursor Y position
     let cursorVisible = true;
 
-    function typeNextLetter() {Z
+    function typeNextLetter() {
         if (index < text.length) {
             // Clear the entire canvas before drawing the new text and cursor
             clearCanvas();
