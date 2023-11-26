@@ -1,5 +1,3 @@
-// script.js
-import 'intersection-observer';
 
 // script.js
 document.addEventListener('DOMContentLoaded', function () {
