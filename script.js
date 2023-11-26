@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const portfolioLink = document.getElementById('portfolioLink');
     const contactLink = document.getElementById('contactLink');
 
+
+
     if (!nameElement || !subtitleElement || !pixelCanvas) {
         console.error("Error: One or more elements not found");
         return;
@@ -54,6 +56,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function clearCanvas() {
         ctx.clearRect(0, 0, pixelCanvas.width, pixelCanvas.height);
     }
+
+    pixelCanvas.style.position = 'fixed';
+    pixelCanvas.style.width = '100%';
+    pixelCanvas.style.height = '100vh';
+    pixelCanvas.style.top = '0';
+    pixelCanvas.style.left = '0';
+    pixelCanvas.style.zIndex = '2';
+
 
     function drawCursor(x, y, visible, fontSize) {
     
