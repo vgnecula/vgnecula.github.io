@@ -1,3 +1,47 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const observer = new IntersectionObserver(handleIntersection, {
+        threshold: 0.5,
+    });
+
+    const sections = document.querySelectorAll('.container section');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    function handleIntersection(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const targetId = entry.target.getAttribute('id');
+                highlightNavLink(targetId);
+            }
+        });
+    }
+
+    function highlightNavLink(targetId) {
+        navLinks.forEach(link => {
+            link.classList.remove('underline');
+            if (link.getAttribute('href').substring(1) === targetId) {
+                link.classList.add('underline');
+            }
+        });
+    }
+
+    // Additional: Update navbar underline on scroll
+    document.addEventListener('scroll', function () {
+        const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+        sections.forEach(section => {
+            const targetId = section.getAttribute('id');
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement.offsetTop <= scrollPosition && targetElement.offsetTop + targetElement.offsetHeight > scrollPosition) {
+                highlightNavLink(targetId);
+            }
+        });
+    });
+});
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -22,27 +66,39 @@ document.addEventListener('DOMContentLoaded', function () {
     pixelCanvas.height = window.innerHeight;
 
     // Add click event listeners to all nav links
-    navLinks.forEach(link => {
-        link.addEventListener('click', handleNavLinkClick);
+    // Initialize IntersectionObserver with a callback
+    const observer = new IntersectionObserver(handleIntersection, {
+        threshold: 0.5, // Adjust the threshold as needed
     });
 
-    function handleNavLinkClick(event) {
-        event.preventDefault();
+    // Get all the sections
+    const sections = document.querySelectorAll('.container section');
 
-        const targetId = event.target.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
+    // Observe each section
+    sections.forEach(section => {
+        observer.observe(section);
+    });
 
-        targetSection.scrollIntoView({ behavior: 'smooth' });
-
-        // Optional: Highlight the clicked link in the navbar
-        navLinks.forEach(link => {
-            link.classList.remove('underline');
+    // Callback function for IntersectionObserver
+    function handleIntersection(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Section is in the viewport
+                const targetId = entry.target.getAttribute('id');
+                highlightNavLink(targetId);
+            }
         });
-        event.target.classList.add('underline');
     }
 
-
-
+    // Function to highlight the corresponding nav link
+    function highlightNavLink(targetId) {
+        navLinks.forEach(link => {
+            link.classList.remove('underline');
+            if (link.getAttribute('href').substring(1) === targetId) {
+                link.classList.add('underline');
+            }
+        });
+    }
     // ... (rest of the JavaScript remains the same)
 
 
