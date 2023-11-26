@@ -21,7 +21,18 @@ document.addEventListener('DOMContentLoaded', function () {
             if (entry.isIntersecting) {
                 const targetId = entry.target.getAttribute('id');
                 highlightNavLink(targetId);
-
+    
+                // Add the "pulse" class to the active nav link
+                const activeNavLink = document.querySelector('.nav-link.pulse');
+                if (activeNavLink) {
+                    activeNavLink.classList.remove('pulse');
+                }
+    
+                const newActiveNavLink = document.querySelector(`.nav-link[href="#${targetId}"]`);
+                if (newActiveNavLink) {
+                    newActiveNavLink.classList.add('pulse');
+                }
+    
                 // Check if the home section is in view
                 if (targetId === 'home') {
                     restartWritingAnimation();
@@ -44,15 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function highlightNavLink(targetId) {
-        navLinks.forEach(link => {
-            link.classList.remove('pulse'); // Remove pulse class from all links
-    
-            if (link.getAttribute('href').substring(1) === targetId) {
-                link.classList.add('pulse'); // Add pulse class to the active link
-            }
-        });
-    }
     
 
 
