@@ -141,21 +141,8 @@ nav a:hover {
     transition: background 1s ease;
 }
 
-/* Add this to your existing CSS or styles.css */
-.nav-link {
-    position: relative;
+nav a.underline {
+    border-bottom: 2px solid #42a5f5;
 }
 
-.nav-link::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0); /* Initial transparent background */
-    transition: background-color 0.5s ease; /* Smooth transition effect */
-}
 
-.nav-link.active::before {
-    background-color: rgba(255, 255, 255, 0.3); /* Highlight color */
-}
