@@ -16,7 +16,8 @@ body, html {
 section {
     height: 100%; /* Set each section to full viewport height */
     scroll-snap-align: start; 
-    position: relative;/* Snap to the start of each section during scrolling */
+    position: relative;
+    display: flex;/* Snap to the start of each section during scrolling */
 }
 
 header {
