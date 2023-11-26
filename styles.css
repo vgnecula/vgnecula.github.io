@@ -132,26 +132,17 @@ nav a {
     transition: color 0.3s;
 }
 
-
+nav a:hover {
+    color: #42a5f5;
+}
 
 
 .slide-animation {
     transition: background 1s ease;
 }
 
-
-
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.5);
-    }
+nav a.underline {
+    border-bottom: 2px solid #42a5f5;
 }
 
-nav a.pulse {
-    animation: pulse 1s infinite;
-    transition: transform 0.5s;
-}
+

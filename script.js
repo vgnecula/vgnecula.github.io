@@ -21,18 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (entry.isIntersecting) {
                 const targetId = entry.target.getAttribute('id');
                 highlightNavLink(targetId);
-    
-                // Add the "pulse" class to the active nav link
-                const activeNavLink = document.querySelector('.nav-link.pulse');
-                if (activeNavLink) {
-                    activeNavLink.classList.remove('pulse');
-                }
-    
-                const newActiveNavLink = document.querySelector(`.nav-link[href="#${targetId}"]`);
-                if (newActiveNavLink) {
-                    newActiveNavLink.classList.add('pulse');
-                }
-    
+
                 // Check if the home section is in view
                 if (targetId === 'home') {
                     restartWritingAnimation();
@@ -55,8 +44,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    
-
+    function highlightNavLink(targetId) {
+        navLinks.forEach(link => {
+            link.classList.remove('underline');
+            if (link.getAttribute('href').substring(1) === targetId) {
+                link.classList.add('underline');
+            }
+        });
+    }
 
     // Animation for typing text with a pixelated cursor
     pixelCanvas.width = window.innerWidth;
