@@ -3,14 +3,14 @@ body, html {
     margin: 0;
     font-family: 'Press Start 2P', cursive; /* Pixel font */
     height: 100%; /* Set the height of body and html to 100% */
+    overflow: scroll;
+    scroll-snap-type: y mandatory;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     height: 400vh;
-    scroll-snap-type: y mandatory;
-    overflow: scroll;
 }
 
 .container section {
