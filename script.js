@@ -119,9 +119,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function drawCursor(x, y, visible, fontSize) {
-        // Your existing drawing functions and code go here
+        // Clear the canvas before drawing the cursor
+        clearCanvas();
+    
+        if (visible) {
+            // Adjust the cursor size based on the font size
+            const cursorSize = fontSize; // Adjust the factor as needed
+    
+            ctx.fillStyle = 'rgba(255, 255, 255, 1)';
+            ctx.fillRect(x - cursorSize / 2.2, y - cursorSize / 2.2, 2, cursorSize / 1.1);
+        }
     }
-
     // Additional code for handling click events on nav links
     navLinks.forEach(link => {
         link.addEventListener('click', handleNavLinkClick);
