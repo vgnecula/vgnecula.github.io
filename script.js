@@ -12,6 +12,70 @@ document.addEventListener('DOMContentLoaded', function () {
     const pixelCanvas = document.getElementById('pixelCanvas');
     const ctx = pixelCanvas.getContext('2d');
 
+
+        // Particle animation for the about section
+        const aboutParticles = document.createElement('div');
+        aboutParticles.classList.add('about-particles');
+        document.getElementById('about').appendChild(aboutParticles);
+    
+        function animateParticles() {
+            const particleCount = 100; // Adjust the number of particles
+            for (let i = 0; i < particleCount; i++) {
+                createParticle();
+            }
+        }
+    
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            const size = Math.random() * 5 + 1; // Random size between 1 and 6
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.background = '#000'; // Particle color
+            particle.style.position = 'absolute';
+    
+            const startLeft = Math.random() * window.innerWidth;
+            const startTop = Math.random() * window.innerHeight;
+    
+            particle.style.left = `${startLeft}px`;
+            particle.style.top = `${startTop}px`;
+    
+            aboutParticles.appendChild(particle);
+    
+            // Animation
+            anime({
+                targets: particle,
+                translateX: Math.random() * 200 - 100, // Random horizontal movement
+                translateY: Math.random() * -100 - 50, // Random vertical movement
+                opacity: 0, // Fade out
+                easing: 'easeOutQuad',
+                duration: 2000, // Animation duration
+                complete: function () {
+                    aboutParticles.removeChild(particle);
+                },
+            });
+        }
+    
+        // Intersection Observer for triggering particle animation
+        const aboutObserver = new IntersectionObserver(handleAboutIntersection, {
+            threshold: 0.5,
+        });
+    
+        aboutObserver.observe(document.getElementById('about'));
+    
+        function handleAboutIntersection(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateParticles();
+                    aboutObserver.unobserve(entry.target); // Stop observing after triggering animation
+                }
+            });
+        }
+    
+        // ... (existing code)
+    });
+    
+
     sections.forEach(section => {
         observer.observe(section);
     });
