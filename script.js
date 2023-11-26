@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const portfolioLink = document.getElementById('portfolioLink');
     const contactLink = document.getElementById('contactLink');
 
+    if (!nameElement || !subtitleElement || !pixelCanvas) {
+        console.error("Error: One or more elements not found");
+        return;
+    }
+
     pixelCanvas.width = window.innerWidth;
     pixelCanvas.height = window.innerHeight;
 
