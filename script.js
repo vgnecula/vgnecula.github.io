@@ -85,13 +85,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (targetId === 'home') {
                     // Restart the writing animation
+
                     currentWritingAnimation = restartWritingAnimation();
                 }  else {
                     // Clear the content of name and subtitle when a different section is in view
                     clearNameAndSubtitle();
                     // Terminate the current writing animation if it exists
                     if (currentWritingAnimation) {
-                        currentWritingAnimation.pause(); // or .complete() depending on your desired behavior
+                        currentWritingAnimation.kill();
+                        currentWritingAnimation = null;  // or .complete() depending on your desired behavior
                     }
                 }
 
