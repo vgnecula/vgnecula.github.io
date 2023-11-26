@@ -46,12 +46,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function highlightNavLink(targetId) {
         navLinks.forEach(link => {
-            link.classList.remove('underline');
+            link.classList.remove('pulse'); // Remove pulse class from all links
+    
             if (link.getAttribute('href').substring(1) === targetId) {
-                link.classList.add('underline');
+                link.classList.add('pulse'); // Add pulse class to the active link
             }
         });
     }
+    
+
 
     // Animation for typing text with a pixelated cursor
     pixelCanvas.width = window.innerWidth;
