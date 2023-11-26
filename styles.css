@@ -8,7 +8,7 @@ body {
 #container {
     display: flex;
     flex-direction: column;
-    height: 100vh; /* Adjust based on the number of sections */
+    height: 400%; /* Adjust based on the number of sections */
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
 }
