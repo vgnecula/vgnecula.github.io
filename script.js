@@ -2,27 +2,21 @@
 document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelectorAll('.container section');
 
-    const options = {
-        threshold: 0.5,
-        rootMargin: '0% 0% -50% 0%', // Adjust the bottom margin as needed
-    };
+    window.addEventListener('scroll', handleScroll);
 
-    const observer = new IntersectionObserver(handleIntersection, options);
+    function handleScroll() {
+        const scrollPosition = window.scrollY;
 
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+        sections.forEach(section => {
+            const fadeElement = section.querySelector('.fade-section');
 
-    function handleIntersection(entries) {
-        entries.forEach(entry => {
-            const fadeElement = entry.target.querySelector('.fade-section');
-
-            if (fadeElement) {
-                // Adjust z-index based on the entry's visibility
-                fadeElement.style.zIndex = entry.isIntersecting ? 2 : 1;
-            }
+            // Adjust the opacity based on the scroll position
+            fadeElement.style.opacity = 1 - scrollPosition / window.innerHeight;
         });
     }
+
+    // Initial check on page load
+    handleScroll();
 });
 
 
