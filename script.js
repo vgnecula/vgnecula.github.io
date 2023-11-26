@@ -57,12 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
         ctx.clearRect(0, 0, pixelCanvas.width, pixelCanvas.height);
     }
 
-    pixelCanvas.style.position = 'fixed';
-    pixelCanvas.style.width = '100%';
-    pixelCanvas.style.height = '100vh';
-    pixelCanvas.style.top = '0';
-    pixelCanvas.style.left = '0';
-    pixelCanvas.style.zIndex = '2';
 
 
     function drawCursor(x, y, visible, fontSize) {
