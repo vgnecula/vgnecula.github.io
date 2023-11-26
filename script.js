@@ -1,11 +1,12 @@
 // script.js
 import 'intersection-observer';
 
+// script.js
 document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelectorAll('.container section');
 
     const options = {
-        threshold: 0.5, // Adjust the threshold as needed
+        threshold: 0.5,
     };
 
     const observer = new IntersectionObserver(handleIntersection, options);
@@ -16,20 +17,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function handleIntersection(entries) {
         entries.forEach(entry => {
-            console.log(entry.target.id, entry.intersectionRatio); // Log section ID and intersection ratio
-            
-            const fadeElement = entry.target.querySelector('.fade-element');
-            
-            if (fadeElement) {
-                // Calculate opacity based on the entry's intersection ratio
-                const opacity = 1 - entry.intersectionRatio;
-                
-                // Apply the calculated opacity to the fade element
-                fadeElement.style.opacity = opacity.toFixed(2);
-            }
+            console.log(entry.target.id, entry.isIntersecting);
         });
     }
 });
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
