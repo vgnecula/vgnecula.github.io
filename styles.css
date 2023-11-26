@@ -34,6 +34,25 @@ header {
     top:100% /* Set the height to full viewport height */
 }
 
+
+.about-title {
+    position: absolute;
+    top: 110%;
+    left: 10%;
+    color: #fff;
+    font-size: 36px;
+}
+
+.about-content {
+    position: absolute;
+    top: 120%;
+    left: 10%;
+    color: #fff;
+    font-size: 18px;
+    width: 80%;
+}
+
+
 #portfolio {
     background: none;
     top: 200%; /* No background for the portfolio section */
@@ -62,31 +81,8 @@ header {
     z-index: 3;
 }
 
-.about-title {
-    position: absolute;
-    top: 110%;
-    left: 10%;
-    color: #fff;
-    font-size: 36px;
-}
-
-.about-content {
-    position: absolute;
-    top: 120%;
-    left: 10%;
-    color: #fff;
-    font-size: 18px;
-    width: 80%;
-}
 
 
-#portfolio {
-    top: 230%; /* Adjust the top position to stack it below the about section */
-}
-
-#contact {
-    top: 340%; /* Adjust the top position to stack it below the portfolio section */
-}
 
 canvas {
     position: fixed;
