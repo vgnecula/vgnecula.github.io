@@ -20,50 +20,18 @@ navLinks.forEach(link => {
 function handleNavLinkClick(event) {
     event.preventDefault();
 
-    // Remove underline from all links
+    const targetId = event.target.getAttribute('href').substring(1);
+    const targetSection = document.getElementById(targetId);
+
+    targetSection.scrollIntoView({ behavior: 'smooth' });
+
+    // Optional: Highlight the clicked link in the navbar
     navLinks.forEach(link => {
         link.classList.remove('underline');
     });
-
-    // Add underline to the clicked link
     event.target.classList.add('underline');
-
-    // Handle specific link actions based on their IDs
-    switch (event.target.id) {
-        case 'homeLink':
-            // Handle home link actions
-            changeBackgroundAndSlide(() => {
-                aboutLink.textContent = 'About';
-                homeLink.style.display = 'none';
-            });
-            break;
-        case 'aboutLink':
-            // Handle about link actions
-            changeBackgroundAndSlide(() => {
-                aboutLink.textContent = 'Home';
-                homeLink.style.display = 'inline';
-            });
-            break;
-        case 'portfolioLink':
-            // Handle portfolio link actions
-            break;
-        case 'contactLink':
-            // Handle contact link actions
-            break;
-        default:
-            break;
-    }
 }
 
-function changeBackgroundAndSlide(callback) {
-    document.body.style.background = "url('background_about.gif') center/cover no-repeat fixed";
-    document.body.classList.add('slide-animation');
-
-    setTimeout(() => {
-        document.body.classList.remove('slide-animation');
-        callback();
-    }, 1000);
-}
 
 
 // ... (rest of the JavaScript remains the same)
