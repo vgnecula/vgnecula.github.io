@@ -12,31 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const portfolioLink = document.getElementById('portfolioLink');
     const contactLink = document.getElementById('contactLink');
 
-    function isSectionInViewport(section) {
-        const rect = section.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-        );
-    }
-
-    // Function to handle scroll events
-    function handleScroll() {
-        // Check each section and add the 'active' class to the one in the viewport
-        document.querySelectorAll('.container section').forEach(section => {
-            if (isSectionInViewport(section)) {
-                section.classList.add('active');
-            } else {
-                section.classList.remove('active');
-            }
-        });
-    }
-
-    // Add a scroll event listener
-    document.addEventListener('scroll', handleScroll);
-
-    // Call handleScroll on page load to set the initial state
-    handleScroll();
+    
 
     if (!nameElement || !subtitleElement || !pixelCanvas) {
         console.error("Error: One or more elements not found");
