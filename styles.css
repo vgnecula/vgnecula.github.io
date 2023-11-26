@@ -14,8 +14,7 @@ body {
 }
 
 .section {
-    height: 100vh; 
-    display: flex;/* Set each section to full viewport height */
+    height: 100vh; /* Set each section to full viewport height */
     scroll-snap-align: start; /* Snap to the start of each section during scrolling */
 }
 
