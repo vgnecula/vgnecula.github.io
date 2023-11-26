@@ -5,12 +5,17 @@ body {
 
 }
 
+#container {
+    display: flex;
+    flex-direction: column;
+    height: 400%; /* Adjust based on the number of sections */
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
 .section {
     height: 100vh; /* Set each section to full viewport height */
     scroll-snap-align: start; /* Snap to the start of each section during scrolling */
-    overflow-y: scroll; /* Enable vertical scrolling for each section */
-    scroll-snap-type: y mandatory;
-    position: relative;
 }
 
 header {
@@ -25,14 +30,14 @@ header {
 
 
 #background {
-    height: 100vh; /* Set the height of the background to match the section height */
+     /* Set the height of the background to match the section height */
     background: url('background.gif') center/cover no-repeat fixed;
 
 }
 
 #about {
     background: #000; /* Set the background color to black */
-    top:100%; /* Set the height to full viewport height */
+     /* Set the height to full viewport height */
 }
 
 
@@ -56,12 +61,12 @@ header {
 
 #portfolio {
     background: none;
-    top: 200%; /* No background for the portfolio section */
+     /* No background for the portfolio section */
 }
 
 #contact {
     background: none;
-    top: 300%;  /* No background for the contact section */
+     /* No background for the contact section */
 }
 
 
