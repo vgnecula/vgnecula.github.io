@@ -27,6 +27,28 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+    navLinks.forEach(link => {
+        link.addEventListener('click', handleNavLinkClick);
+    });
+
+    function handleNavLinkClick(event) {
+        event.preventDefault();
+
+        const targetId = event.target.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+
+        // Smooth scroll effect
+        targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',  // Scroll to the top of the target element
+        });
+
+        // Optional: Highlight the clicked link in the navbar
+        navLinks.forEach(link => {
+            link.classList.remove('underline');
+        });
+        event.target.classList.add('underline');
+    }
 
     // Additional: Update navbar underline on scroll
     document.addEventListener('scroll', function () {
