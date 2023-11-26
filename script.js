@@ -1,27 +1,3 @@
-// script.js
-document.addEventListener('DOMContentLoaded', function () {
-    const sections = document.querySelectorAll('.container section');
-
-    window.addEventListener('scroll', handleScroll);
-
-    function handleScroll() {
-        const scrollPosition = window.scrollY;
-
-        sections.forEach(section => {
-            const fadeElement = section.querySelector('.fade-section');
-
-            // Adjust the opacity based on the scroll position
-            fadeElement.style.opacity = 1 - scrollPosition / window.innerHeight;
-        });
-    }
-
-    // Initial check on page load
-    handleScroll();
-});
-
-
-
-
 
 document.addEventListener('DOMContentLoaded', function () {
 

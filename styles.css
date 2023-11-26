@@ -23,16 +23,6 @@ body, html {
 }
 
 
-.container section .fade-section {
-    opacity: 0;
-    z-index: 1;
-}
-
-.container section .fade-section.visible {
-    opacity: 1;
-    z-index: 2;
-}
-
 header {
     position: fixed;
     top: 0;
