@@ -17,15 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const fadeElement = entry.target.querySelector('.fade-section');
 
             if (fadeElement) {
-                // Calculate opacity based on the entry's intersection ratio
-                const opacity = 1 - entry.intersectionRatio;
-
-                // Apply the calculated opacity to the fade element
-                fadeElement.style.opacity = opacity.toFixed(2);
+                // Add or remove a class based on the entry's visibility
+                fadeElement.classList.toggle('visible', entry.isIntersecting);
             }
         });
     }
 });
+
 
 
 

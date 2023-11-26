@@ -22,10 +22,13 @@ body, html {
     align-items: center;
 }
 .container section .fade-section {
-    opacity: 1;
+    opacity: 0;
     transition: opacity 0.5s ease;
 }
 
+.container section .fade-section.visible {
+    opacity: 1;
+}
 header {
     position: fixed;
     top: 0;
