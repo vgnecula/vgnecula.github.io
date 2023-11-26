@@ -29,33 +29,25 @@ document.addEventListener('DOMContentLoaded', function () {
         const size = Math.random() * 5 + 1; // Random size between 1 and 6
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
-        particle.style.background = '#000'; // Particle color
+        particle.style.background = '#42a5f5'; // Particle color
         particle.style.position = 'absolute';
-    
-        const columnCount = 10; // Adjust the number of columns
-        const rowCount = 5;   // Adjust the number of rows
-        const columnWidth = window.innerWidth / columnCount;
-        const rowHeight = window.innerHeight / rowCount;
-    
-        const columnIndex = Math.floor(Math.random() * columnCount);
-        const rowIndex = Math.floor(Math.random() * rowCount);
-    
-        const startLeft = columnIndex * columnWidth;
-        const startTop = rowIndex * rowHeight;
-    
+
+        const startLeft = Math.random() * window.innerWidth;
+        const startTop = Math.random() * window.innerHeight;
+
         particle.style.left = `${startLeft}px`;
         particle.style.top = `${startTop}px`;
-    
+
         aboutParticles.appendChild(particle);
-    
+
         // Animation
         anime({
             targets: particle,
-            translateX: Math.random() * 200 - 100,
-            translateY: Math.random() * -100 - 50,
-            opacity: 0,
+            translateX: Math.random() * 200 - 100, // Random horizontal movement
+            translateY: Math.random() * -100 - 50, // Random vertical movement
+            opacity: 0, // Fade out
             easing: 'easeOutQuad',
-            duration: 2000,
+            duration: 2000, // Animation duration
             complete: function () {
                 aboutParticles.removeChild(particle);
             },
@@ -93,14 +85,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (targetId === 'home') {
                     restartWritingAnimation();
                 }
+                else {
+                    // Clear the content of name and subtitle when a different section is in view
+                    clearNameAndSubtitle();
+                }
             }
         });
     }
-
-    function restartWritingAnimation() {
-        // Clear existing text
+    function clearNameAndSubtitle() {
         nameElement.innerHTML = '';
         subtitleElement.innerHTML = '';
+    }
+    function restartWritingAnimation() {
+        
+        clearNameAndSubtitle();
 
         // Your code to restart the writing animation here
         animateTextWithCursorInDiv("Vladimir Necula", nameElement, 1, 36, () => {
