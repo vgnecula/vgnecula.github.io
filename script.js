@@ -1,3 +1,6 @@
+// script.js
+import 'intersection-observer';
+
 document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelectorAll('.container section');
 
