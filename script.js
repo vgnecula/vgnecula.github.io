@@ -1,30 +1,24 @@
-// script.js
-// script.js
 document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelectorAll('.container section');
 
-    const options = {
-        threshold: 0.5, // Adjust the threshold as needed
-    };
+    document.addEventListener('scroll', handleScroll);
 
-    const observer = new IntersectionObserver(handleIntersection, options);
+    function handleScroll() {
+        sections.forEach(section => {
+            // Get the distance of the section from the top of the viewport
+            const sectionTop = section.getBoundingClientRect().top;
 
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+            // Calculate opacity based on the section's position
+            const opacity = 1 - Math.min(1, sectionTop / 200); // Adjust the value (200) as needed
 
-    function handleIntersection(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            } else {
-                entry.target.classList.remove('active');
+            // Apply the calculated opacity to a specific element within the section
+            const fadeElement = section.querySelector('.fade-element');
+            if (fadeElement) {
+                fadeElement.style.opacity = opacity.toFixed(2);
             }
         });
     }
 });
-
-
 
 
 document.addEventListener('DOMContentLoaded', function () {

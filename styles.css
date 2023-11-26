@@ -11,26 +11,15 @@ body, html {
     display: flex;
     flex-direction: column;
     height: 400vh;
-
 }
 
 .container section {
     height: 100%; /* Set each section to full viewport height */
-    scroll-snap-align: start; /* Set each section to full viewport height */
+    scroll-snap-align: start;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0; /* Initially set opacity to 0 for the fade-in effect */
-    transform: translateY(20px); /* Initial position for the sliding effect */
-    transition: opacity 0.5s ease, transform 0.5s ease; 
-    pointer-events: none; 
-}
-
-.container section.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
 }
 
 header {
