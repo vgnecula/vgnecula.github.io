@@ -1,0 +1,72 @@
+Script started on 2023-11-26 08:27:00-05:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="204" LINES="55"]
+[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ sc[K[Kgit add scrt[Kipt.js 
+[?2004l[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git add styles.css 
+[?2004l[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ f[Kgit commit -0m[K[Km rsae
+[?2004l[main 0797c26] rsae
+ 2 files changed, 25 insertions(+), 2 deletions(-)
+[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git push
+[?2004lEnumerating objects: 7, done.
+Counting objects:  14% (1/7)Counting objects:  28% (2/7)Counting objects:  42% (3/7)Counting objects:  57% (4/7)Counting objects:  71% (5/7)Counting objects:  85% (6/7)Counting objects: 100% (7/7)Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads
+Compressing objects:  25% (1/4)Compressing objects:  50% (2/4)Compressing objects:  75% (3/4)Compressing objects: 100% (4/4)Compressing objects: 100% (4/4), done.
+Writing objects:  25% (1/4)Writing objects:  50% (2/4)Writing objects:  75% (3/4)Writing objects: 100% (4/4)Writing objects: 100% (4/4), 658 bytes | 658.00 KiB/s, done.
+Total 4 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas:   0% (0/3)[Kremote: Resolving deltas:  33% (1/3)[Kremote: Resolving deltas:  66% (2/3)[Kremote: Resolving deltas: 100% (3/3)[Kremote: Resolving deltas: 100% (3/3), completed with 3 local objects.[K
+To https://github.com/vgnecula/vgnecula.github.io
+   24cca8e..0797c26  main -> main
+[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git add styles.css 
+[?2004l[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git commit -m dsra
+[?2004l[main a5c32d9] dsra
+ 1 file changed, 8 insertions(+), 13 deletions(-)
+[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git push
+[?2004lEnumerating objects: 5, done.
+Counting objects:  20% (1/5)Counting objects:  40% (2/5)Counting objects:  60% (3/5)Counting objects:  80% (4/5)Counting objects: 100% (5/5)Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects:  33% (1/3)Compressing objects:  66% (2/3)Compressing objects: 100% (3/3)Compressing objects: 100% (3/3), done.
+Writing objects:  33% (1/3)Writing objects:  66% (2/3)Writing objects: 100% (3/3)Writing objects: 100% (3/3), 314 bytes | 314.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas:   0% (0/2)[Kremote: Resolving deltas:  50% (1/2)[Kremote: Resolving deltas: 100% (2/2)[Kremote: Resolving deltas: 100% (2/2), completed with 2 local objects.[K
+To https://github.com/vgnecula/vgnecula.github.io
+   0797c26..a5c32d9  main -> main
+[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git add ss[Ktyles.css 
+[?2004l[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git commit -m dsrrrd
+[?2004l[main 9d7890c] dsrrrd
+ 1 file changed, 6 insertions(+), 7 deletions(-)
+[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git pusj[Kh
+[?2004lEnumerating objects: 5, done.
+Counting objects:  20% (1/5)Counting objects:  40% (2/5)Counting objects:  60% (3/5)Counting objects:  80% (4/5)Counting objects: 100% (5/5)Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects:  33% (1/3)Compressing objects:  66% (2/3)Compressing objects: 100% (3/3)Compressing objects: 100% (3/3), done.
+Writing objects:  33% (1/3)Writing objects:  66% (2/3)Writing objects: 100% (3/3)Writing objects: 100% (3/3), 318 bytes | 318.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas:   0% (0/2)[Kremote: Resolving deltas:  50% (1/2)[Kremote: Resolving deltas: 100% (2/2)[Kremote: Resolving deltas: 100% (2/2), completed with 2 local objects.[K
+To https://github.com/vgnecula/vgnecula.github.io
+   a5c32d9..9d7890c  main -> main
+[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git add styles.css 
+[?2004l[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git add scrit[K[Kipt.js 
+[?2004l[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git commit -mds[K[K sdrrr
+[?2004l[main ce77829] sdrrr
+ 2 files changed, 19 insertions(+), 22 deletions(-)
+[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git push
+[?2004lEnumerating objects: 7, done.
+Counting objects:  14% (1/7)Counting objects:  28% (2/7)Counting objects:  42% (3/7)Counting objects:  57% (4/7)Counting objects:  71% (5/7)Counting objects:  85% (6/7)Counting objects: 100% (7/7)Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads
+Compressing objects:  25% (1/4)Compressing objects:  50% (2/4)Compressing objects:  75% (3/4)Compressing objects: 100% (4/4)Compressing objects: 100% (4/4), done.
+Writing objects:  25% (1/4)Writing objects:  50% (2/4)Writing objects:  75% (3/4)Writing objects: 100% (4/4)Writing objects: 100% (4/4), 602 bytes | 602.00 KiB/s, done.
+Total 4 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas:   0% (0/3)[Kremote: Resolving deltas:  33% (1/3)[Kremote: Resolving deltas:  66% (2/3)[Kremote: Resolving deltas: 100% (3/3)[Kremote: Resolving deltas: 100% (3/3), completed with 3 local objects.[K
+To https://github.com/vgnecula/vgnecula.github.io
+   9d7890c..ce77829  main -> main
+[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git add styles.css 
+[?2004l[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git add script.js 
+[?2004l[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git commit -msd[K[K sdrsarwe
+[?2004l[main b51088d] sdrsarwe
+ 2 files changed, 15 insertions(+), 29 deletions(-)
+[?2004h]0;doyouseeme@doyouseeme: ~/workspace/vgnecula.github.io[01;32mdoyouseeme@doyouseeme[00m:[01;34m~/workspace/vgnecula.github.io[00m$ git push
+[?2004lEnumerating objects: 7, done.
+Counting objects:  14% (1/7)Counting objects:  28% (2/7)Counting objects:  42% (3/7)Counting objects:  57% (4/7)Counting objects:  71% (5/7)Counting objects:  85% (6/7)Counting objects: 100% (7/7)Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads
+Compressing objects:  25% (1/4)Compressing objects:  50% (2/4)Compressing objects:  75% (3/4)Compressing objects: 100% (4/4)Compressing objects: 100% (4/4), done.
+Writing objects:  25% (1/4)Writing objects:  50% (2/4)Writing objects:  75% (3/4)Writing objects: 100% (4/4)Writing objects: 100% (4/4), 510 bytes | 510.00 KiB/s, done.
+Total 4 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving delta
