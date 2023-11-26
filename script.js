@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }else if (targetId === 'about') {
                     // About section is in view, start the particle animation
                     animateParticles();
-                    learNameAndSubtitle();
+                    clearNameAndSubtitle();
                 }
                 else {
                     // Clear the content of name and subtitle when a different section is in view
