@@ -10,6 +10,7 @@ body {
     scroll-snap-align: start; /* Snap to the start of each section during scrolling */
     overflow-y: scroll; /* Enable vertical scrolling for each section */
     scroll-snap-type: y mandatory;
+    position: relative;
 }
 
 header {
@@ -31,7 +32,7 @@ header {
 
 #about {
     background: #000; /* Set the background color to black */
-    top:100% /* Set the height to full viewport height */
+    height: 100vh; /* Set the height to full viewport height */
 }
 
 
@@ -55,12 +56,12 @@ header {
 
 #portfolio {
     background: none;
-    top: 200%; /* No background for the portfolio section */
+    height: 100vh; /* No background for the portfolio section */
 }
 
 #contact {
     background: none;
-    top: 300%;  /* No background for the contact section */
+    height: 100vh;   /* No background for the contact section */
 }
 
 
