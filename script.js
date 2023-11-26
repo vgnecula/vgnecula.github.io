@@ -1,4 +1,3 @@
-
 // script.js
 document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelectorAll('.container section');
@@ -15,10 +14,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function handleIntersection(entries) {
         entries.forEach(entry => {
-            console.log(entry.target.id, entry.isIntersecting);
+            const fadeElement = entry.target.querySelector('.fade-section');
+
+            if (fadeElement) {
+                // Calculate opacity based on the entry's intersection ratio
+                const opacity = 1 - entry.intersectionRatio;
+
+                // Apply the calculated opacity to the fade element
+                fadeElement.style.opacity = opacity.toFixed(2);
+            }
         });
     }
 });
+
 
 
 
