@@ -24,15 +24,13 @@ body, html {
     opacity: 0; /* Initially set opacity to 0 for the fade-in effect */
     transform: translateY(20px); /* Initial position for the sliding effect */
     transition: opacity 0.5s ease, transform 0.5s ease; 
-    visibility: hidden;  /* Initially hide the section */
-    max-height: 0; /* Add transitions for opacity and transform */
+    pointer-events: none; 
 }
 
 .container section.active {
     opacity: 1;
     transform: translateY(0);
-    visibility: visible; /* Make the section visible */
-    max-height: 100vh; 
+    pointer-events: auto;
 }
 
 header {
