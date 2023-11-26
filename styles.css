@@ -11,15 +11,23 @@ body, html {
     display: flex;
     flex-direction: column;
     height: 400vh;
+    overflow: hidden; /* Hide overflow to create a smooth sliding effect */
 }
 
 .container section {
-    height: 100%; /* Set each section to full viewport height */
-    scroll-snap-align: start;
+    height: 100vh; /* Set each section to full viewport height */
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0; /* Initially set opacity to 0 for the fade-in effect */
+    transform: translateY(20px); /* Initial position for the sliding effect */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Add transitions for opacity and transform */
+}
+
+.container section.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 header {

@@ -1,4 +1,31 @@
 // script.js
+// script.js
+document.addEventListener('DOMContentLoaded', function () {
+    const sections = document.querySelectorAll('.container section');
+
+    const options = {
+        threshold: 0.5, // Adjust the threshold as needed
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, options);
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    function handleIntersection(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            } else {
+                entry.target.classList.remove('active');
+            }
+        });
+    }
+});
+
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
