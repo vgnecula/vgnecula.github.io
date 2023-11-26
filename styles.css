@@ -30,14 +30,14 @@ header {
 
 
 #background {
-     /* Set the height of the background to match the section height */
+    height: 100vh; /* Set the height of the background to match the section height */
     background: url('background.gif') center/cover no-repeat fixed;
 
 }
 
 #about {
     background: #000; /* Set the background color to black */
-     /* Set the height to full viewport height */
+    top:100%; /* Set the height to full viewport height */
 }
 
 
@@ -61,12 +61,12 @@ header {
 
 #portfolio {
     background: none;
-     /* No background for the portfolio section */
+    top: 200%; /* No background for the portfolio section */
 }
 
 #contact {
     background: none;
-     /* No background for the contact section */
+    top: 300%;  /* No background for the contact section */
 }
 
 
