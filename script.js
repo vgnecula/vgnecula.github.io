@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function highlightNavLink(targetId) {
         navLinks.forEach(link => {
-            link.classList.remove('underline');
+            link.classList.remove('highlight');
             if (link.getAttribute('href').substring(1) === targetId) {
-                link.classList.add('underline');
+                link.classList.add('highlight');
             }
         });
     }
