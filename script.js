@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const pixelCanvas = document.getElementById('pixelCanvas');
     const ctx = pixelCanvas.getContext('2d');
 
+    let currentWritingAnimation = null;
+
     const aboutParticles = document.createElement('div');
     aboutParticles.classList.add('about-particles');
     document.getElementById('about').appendChild(aboutParticles);
@@ -81,18 +83,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 const targetId = entry.target.getAttribute('id');
                 highlightNavLink(targetId);
 
-                // Check if the home section is in view
                 if (targetId === 'home') {
-                    restartWritingAnimation();
-                }else if (targetId === 'about') {
-                    // About section is in view, start the particle animation
-                    animateParticles();
-                    clearNameAndSubtitle();
-                }
-                else {
+                    // Restart the writing animation
+                    currentWritingAnimation = restartWritingAnimation();
+                }  else {
                     // Clear the content of name and subtitle when a different section is in view
                     clearNameAndSubtitle();
+                    // Terminate the current writing animation if it exists
+                    if (currentWritingAnimation) {
+                        currentWritingAnimation.pause(); // or .complete() depending on your desired behavior
+                    }
                 }
+
+
+                if (targetId === 'about') {
+                    // About section is in view, start the particle animation
+                    animateParticles();
+                }
+
+                console.log(currentWritingAnimation);
             }
         });
     }
@@ -107,8 +116,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (currentSection !== 'home') {
             clearNameAndSubtitle();
         }
-        console.log(currentSection);
-    }, 50); // Adjust the interval as needed
+        
+    }, 10); // Adjust the interval as needed
 
     function getCurrentSection() {
         // Find the section that is currently in view based on scroll position
