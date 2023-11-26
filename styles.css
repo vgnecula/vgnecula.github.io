@@ -9,6 +9,7 @@ body {
     height: 100vh; /* Set each section to full viewport height */
     scroll-snap-align: start; /* Snap to the start of each section during scrolling */
     overflow-y: scroll; /* Enable vertical scrolling for each section */
+    scroll-snap-type: y mandatory;
 }
 
 header {
