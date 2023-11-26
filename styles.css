@@ -30,7 +30,8 @@ header {
 }
 
 #about {
-    background: none; /* No background for the about section */
+    background: #000; /* Set the background color to black */
+    height: 100vh; /* Set the height to full viewport height */
 }
 
 #portfolio {
@@ -61,7 +62,7 @@ header {
 
 .about-title {
     position: absolute;
-    top: 10%;
+    top: 110%;
     left: 10%;
     color: #fff;
     font-size: 36px;
@@ -69,13 +70,21 @@ header {
 
 .about-content {
     position: absolute;
-    top: 20%;
+    top: 120%;
     left: 10%;
     color: #fff;
     font-size: 18px;
     width: 80%;
 }
 
+
+#portfolio {
+    top: 230%; /* Adjust the top position to stack it below the about section */
+}
+
+#contact {
+    top: 340%; /* Adjust the top position to stack it below the portfolio section */
+}
 
 canvas {
     position: fixed;
