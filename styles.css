@@ -132,18 +132,14 @@ nav a {
     transition: color 0.3s;
 }
 
-nav a:hover {
-    color: #42a5f5;
-}
+
 
 
 .slide-animation {
     transition: background 1s ease;
 }
 
-nav a.underline {
-    border-bottom: 2px solid #42a5f5;
-}
+
 
 
 nav a.pulse {
@@ -153,11 +149,14 @@ nav a.pulse {
 @keyframes pulse {
     0% {
         transform: scale(1);
+        opacity: 1;
     }
     50% {
         transform: scale(1.2);
+        opacity: 0.8;
     }
     100% {
         transform: scale(1);
+        opacity: 1;
     }
 }
