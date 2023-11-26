@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (targetId === 'home') {
                     // Restart the writing animation
-
+                    clearNameAndSubtitle();
                     currentWritingAnimation = restartWritingAnimation();
                 }  else {
                     // Clear the content of name and subtitle when a different section is in view
