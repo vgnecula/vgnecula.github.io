@@ -9,15 +9,13 @@ body, html {
     display: flex;
     flex-direction: column;
     height: 400vh;
-    scroll-snap-points-y: repeat(100vh);
     scroll-snap-type: y mandatory;
     overflow: scroll;
 }
 
-section {
+.container section {
     height: 100%; /* Set each section to full viewport height */
     scroll-snap-align: start;
-    scroll-snap-stop: normal;
     position: relative;
     display: flex;
     justify-content: center;
