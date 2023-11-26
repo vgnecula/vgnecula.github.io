@@ -107,7 +107,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (currentSection !== 'home') {
             clearNameAndSubtitle();
         }
-    }, 500); // Adjust the interval as needed
+        console.log(currentSection);
+    }, 50); // Adjust the interval as needed
 
     function getCurrentSection() {
         // Find the section that is currently in view based on scroll position
