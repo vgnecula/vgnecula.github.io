@@ -32,7 +32,7 @@ header {
 
 #about {
     background: #000; /* Set the background color to black */
-    height: 100vh; /* Set the height to full viewport height */
+    top:100%; /* Set the height to full viewport height */
 }
 
 
@@ -56,12 +56,12 @@ header {
 
 #portfolio {
     background: none;
-    height: 100vh; /* No background for the portfolio section */
+    top: 200%; /* No background for the portfolio section */
 }
 
 #contact {
     background: none;
-    height: 100vh;   /* No background for the contact section */
+    top: 300%;  /* No background for the contact section */
 }
 
 
