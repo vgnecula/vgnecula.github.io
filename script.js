@@ -31,23 +31,31 @@ document.addEventListener('DOMContentLoaded', function () {
         particle.style.height = `${size}px`;
         particle.style.background = '#000'; // Particle color
         particle.style.position = 'absolute';
-
-        const startLeft = Math.random() * window.innerWidth;
-        const startTop = Math.random() * window.innerHeight;
-
+    
+        const columnCount = 10; // Adjust the number of columns
+        const rowCount = 5;   // Adjust the number of rows
+        const columnWidth = window.innerWidth / columnCount;
+        const rowHeight = window.innerHeight / rowCount;
+    
+        const columnIndex = Math.floor(Math.random() * columnCount);
+        const rowIndex = Math.floor(Math.random() * rowCount);
+    
+        const startLeft = columnIndex * columnWidth;
+        const startTop = rowIndex * rowHeight;
+    
         particle.style.left = `${startLeft}px`;
         particle.style.top = `${startTop}px`;
-
+    
         aboutParticles.appendChild(particle);
-
+    
         // Animation
         anime({
             targets: particle,
-            translateX: Math.random() * 200 - 100, // Random horizontal movement
-            translateY: Math.random() * -100 - 50, // Random vertical movement
-            opacity: 0, // Fade out
+            translateX: Math.random() * 200 - 100,
+            translateY: Math.random() * -100 - 50,
+            opacity: 0,
             easing: 'easeOutQuad',
-            duration: 2000, // Animation duration
+            duration: 2000,
             complete: function () {
                 aboutParticles.removeChild(particle);
             },

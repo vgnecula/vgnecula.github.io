@@ -39,7 +39,8 @@ header {
 
 #about {
     position: relative; /* Make it relative to contain absolute particles */
-    overflow: hidden; /* Hide overflowing particles */
+    overflow: hidden; 
+    background: black;/* Hide overflowing particles */
 }
 
 .about-particles {
@@ -52,7 +53,6 @@ header {
 }
 
 #about .content {
-    position: relative;
     z-index: 2;
 }
 
