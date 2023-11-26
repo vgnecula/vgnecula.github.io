@@ -31,15 +31,17 @@ header {
 
 #about {
     background: #000; /* Set the background color to black */
-    height: 100vh; /* Set the height to full viewport height */
+    top:100% /* Set the height to full viewport height */
 }
 
 #portfolio {
-    background: none; /* No background for the portfolio section */
+    background: none;
+    top: 200%; /* No background for the portfolio section */
 }
 
 #contact {
-    background: none; /* No background for the contact section */
+    background: none;
+    top: 300%;  /* No background for the contact section */
 }
 
 
