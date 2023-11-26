@@ -84,6 +84,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Check if the home section is in view
                 if (targetId === 'home') {
                     restartWritingAnimation();
+                }else if (targetId === 'about') {
+                    // About section is in view, start the particle animation
+                    animateParticles();
+                    learNameAndSubtitle();
                 }
                 else {
                     // Clear the content of name and subtitle when a different section is in view
@@ -96,6 +100,34 @@ document.addEventListener('DOMContentLoaded', function () {
         nameElement.innerHTML = '';
         subtitleElement.innerHTML = '';
     }
+
+        // Periodically check the current section and clear content if needed
+    setInterval(() => {
+        const currentSection = getCurrentSection();
+        if (currentSection !== 'home') {
+            clearNameAndSubtitle();
+        }
+    }, 500); // Adjust the interval as needed
+
+    function getCurrentSection() {
+        // Find the section that is currently in view based on scroll position
+        const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+        for (const section of sections) {
+            const targetId = section.getAttribute('id');
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement.offsetTop <= scrollPosition && targetElement.offsetTop + targetElement.offsetHeight > scrollPosition) {
+                return targetId;
+            }
+        }
+
+        // If no section is in view, return a default value
+        return 'unknown';
+    }
+
+
+
     function restartWritingAnimation() {
         
         clearNameAndSubtitle();
