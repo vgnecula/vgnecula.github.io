@@ -146,23 +146,18 @@ nav a.underline {
 }
 
 
-/* Add a pulse animation */
+nav a.pulse {
+    animation: pulse 1s infinite;
+}
+
 @keyframes pulse {
     0% {
-      transform: scale(1);
+        transform: scale(1);
     }
     50% {
-      transform: scale(1.2);
+        transform: scale(1.2);
     }
     100% {
-      transform: scale(1);
+        transform: scale(1);
     }
-  }
-  
-  /* Apply the pulse animation to the active section in the navbar */
-  nav a.underline::after {
-      content: "";
-      display: block;
-      border-bottom: 2px solid #42a5f5;
-      animation: pulse 1s infinite; /* Add the pulse animation */
-  }
+}
