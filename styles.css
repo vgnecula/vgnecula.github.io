@@ -22,7 +22,7 @@ header {
     z-index: 3;
 }
 
-canvas {
+#pixelCanvas {
     position: fixed;
     top: 0;
     left: 0;
@@ -36,8 +36,34 @@ canvas {
     transform: translate(-50%, -50%);
     text-align: center;
     color: #fff;
-    z-index: 3; /* Ensure text elements are in front of the canvas */
+    z-index: 3;
 }
+
+.about-title {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    color: #fff;
+    font-size: 36px;
+}
+
+.about-content {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    color: #fff;
+    font-size: 18px;
+    width: 80%;
+}
+
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
 
 #name, #subtitle {
     
