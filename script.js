@@ -4,19 +4,27 @@ import 'intersection-observer';
 document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelectorAll('.container section');
 
-    document.addEventListener('scroll', handleScroll);
+    const options = {
+        threshold: 0.5, // Adjust the threshold as needed
+    };
 
-    function handleScroll() {
-        sections.forEach(section => {
-            // Get the distance of the section from the top of the viewport
-            const sectionTop = section.getBoundingClientRect().top;
+    const observer = new IntersectionObserver(handleIntersection, options);
 
-            // Calculate opacity based on the section's position
-            const opacity = 1 - Math.min(1, sectionTop / 200); // Adjust the value (200) as needed
+    sections.forEach(section => {
+        observer.observe(section);
+    });
 
-            // Apply the calculated opacity to a specific element within the section
-            const fadeElement = section.querySelector('.fade-element');
+    function handleIntersection(entries) {
+        entries.forEach(entry => {
+            console.log(entry.target.id, entry.intersectionRatio); // Log section ID and intersection ratio
+            
+            const fadeElement = entry.target.querySelector('.fade-element');
+            
             if (fadeElement) {
+                // Calculate opacity based on the entry's intersection ratio
+                const opacity = 1 - entry.intersectionRatio;
+                
+                // Apply the calculated opacity to the fade element
                 fadeElement.style.opacity = opacity.toFixed(2);
             }
         });
