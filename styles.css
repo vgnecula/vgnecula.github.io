@@ -21,14 +21,17 @@ body, html {
     justify-content: center;
     align-items: center;
 }
+
 .container section .fade-section {
     opacity: 0;
     transition: opacity 0.5s ease;
+    z-index: 1;
 }
 
 .container section .fade-section.visible {
     opacity: 1;
 }
+
 header {
     position: fixed;
     top: 0;

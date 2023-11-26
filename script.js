@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const options = {
         threshold: 0.5,
+        rootMargin: '0% 0% -50% 0%', // Adjust the bottom margin as needed
     };
 
     const observer = new IntersectionObserver(handleIntersection, options);
@@ -17,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const fadeElement = entry.target.querySelector('.fade-section');
 
             if (fadeElement) {
-                // Add or remove a class based on the entry's visibility
-                fadeElement.classList.toggle('visible', entry.isIntersecting);
+                // Adjust z-index based on the entry's visibility
+                fadeElement.style.zIndex = entry.isIntersecting ? 2 : 1;
             }
         });
     }
