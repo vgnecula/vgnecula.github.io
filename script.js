@@ -107,6 +107,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     function clearNameAndSubtitle() {
         nameElement.innerHTML = '';
+        if (anime.running.length) {
+            anime.remove(subtitleElement); // Stop subtitle animation if it's running
+        }
         subtitleElement.innerHTML = '';
     }
 
@@ -141,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function restartWritingAnimation() {
         
         clearNameAndSubtitle();
-        
+
         if (currentWritingAnimation) {
             currentWritingAnimation.kill();
             currentWritingAnimation = null;
