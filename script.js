@@ -78,19 +78,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function clearNameAndSubtitle() {
         nameElement.innerHTML = '';
-        currentNameAnimation.kill();
-        currentSubtitleAnimation.kill();
+        
+        
     
         // Pause and reset the subtitle animation
         if (currentNameAnimation) {
-            currentNameAnimation.pause();
-            currentNameAnimation.seek(0);
+            currentNameAnimation.kill();
+            
             currentNameAnimation = null;
         }
     
         if (currentSubtitleAnimation) {
-            currentSubtitleAnimation.pause();
-            currentSubtitleAnimation.seek(0);
+            currentSubtitleAnimation.kill();
+            
             currentSubtitleAnimation = null;
         }
     
