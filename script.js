@@ -107,8 +107,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     function clearNameAndSubtitle() {
         nameElement.innerHTML = '';
-        if (anime.running.length) {
-            anime.remove(subtitleElement); // Stop subtitle animation if it's running
+   // Pause and reset the subtitle animation
+        if (currentWritingAnimation) {
+            currentWritingAnimation.pause();
+            currentWritingAnimation.seek(0);
+            currentWritingAnimation = null;
         }
         console.log("ASDAS");
         subtitleElement.innerHTML = '';
@@ -146,10 +149,12 @@ document.addEventListener('DOMContentLoaded', function () {
         
         clearNameAndSubtitle();
 
-        if (currentWritingAnimation) {
-            currentWritingAnimation.kill();
-            currentWritingAnimation = null;
-        }
+          // Pause and reset the subtitle animation
+    if (currentWritingAnimation) {
+        currentWritingAnimation.pause();
+        currentWritingAnimation.seek(0);
+        currentWritingAnimation = null;
+    }
     
         // Clear any existing timeout for subtitle animation
         clearTimeout(animationTimeout);
@@ -159,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
         currentWritingAnimation = animateTextWithCursorInDiv("Vladimir Necula", nameElement, 1, 36, () => {
             // Start typing animation for the subtitle with pixelated cursor after a delay
             animationTimeout = setTimeout(() => {
+                subtitleElement.innerHTML = '';
                 animateTextWithCursorInDiv("Student @ Lafayette College", subtitleElement, 1, 18, () => {
                     // Animation for both name and subtitle is complete
                 });
