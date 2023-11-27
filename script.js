@@ -82,12 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
         nameElement.innerHTML = '';
         
         subtitleElement.innerHTML = '';
-    
-        if (currentSubtitleAnimation) {
-            currentSubtitleAnimation.kill();
-            
-            currentSubtitleAnimation = null;
-        }
+
 
         // Pause and reset the subtitle animation
         if (currentNameAnimation) {
