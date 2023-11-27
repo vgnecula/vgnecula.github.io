@@ -52,13 +52,6 @@ header {
     font-size: 18px;
 }
 
-.arrow {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    display: inline-block;
-}
-
 .left-arrow {
     border-width: 10px 15px 10px 0;
     border-color: transparent #fff transparent transparent;

@@ -332,10 +332,10 @@ document.addEventListener('DOMContentLoaded', function () {
         anime({
             targets: '.scroll-text-container',
             opacity: [0, 1],
-            duration: 1000, // Adjust the duration as needed
+            duration: 2000, // Adjust the duration as needed
             easing: 'easeInOutQuad', // Optional: Choose the easing function
         });
-    }, 1000);
+    }, 2000);
 
 
 
