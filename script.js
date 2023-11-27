@@ -142,6 +142,12 @@ document.addEventListener('DOMContentLoaded', function () {
         
         clearNameAndSubtitle();
 
+
+        if (currentWritingAnimation) {
+            currentWritingAnimation.kill();
+            currentWritingAnimation = null;
+        }
+
         clearTimeout(animationTimeout);
 
         
