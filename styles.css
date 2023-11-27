@@ -38,28 +38,37 @@ header {
 }
 
 
-.scroll-down-indicator {
-    position: absolute;
+.scroll-text-container {
+    position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
-.arrow-container {
-    margin-top: 10px;
+.scroll-down-text {
+    margin: 0 20px;
+    font-size: 18px;
 }
 
 .arrow {
-    border: solid white;
-    border-width: 0 3px 3px 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
     display: inline-block;
-    padding: 3px;
 }
 
-.arrow-down {
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
+.left-arrow {
+    border-width: 10px 15px 10px 0;
+    border-color: transparent #fff transparent transparent;
+    margin-right: 10px;
+}
+
+.right-arrow {
+    border-width: 10px 0 10px 15px;
+    border-color: transparent transparent transparent #fff;
+    margin-left: 10px;
 }
 
 

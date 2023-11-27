@@ -11,9 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const subtitleElement = document.getElementById('subtitle');
     const pixelCanvas = document.getElementById('pixelCanvas');
     const ctx = pixelCanvas.getContext('2d');
-
-    let currentNameAnimation = null;
-    let currentSubtitleAnimation = null;
+    
 
     const aboutParticles = document.createElement('div');
     aboutParticles.classList.add('about-particles');
@@ -310,4 +308,47 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+
+
+    let currentNameAnimation = null;
+    let currentSubtitleAnimation = null;
+    let scrollTextAnimation = null;
+
+
+    // ... (rest of your code)
+
+    // Add a container for the scroll text and arrows
+    const scrollTextContainer = document.createElement('div');
+    scrollTextContainer.classList.add('scroll-text-container');
+    document.body.appendChild(scrollTextContainer);
+
+    // Create the scroll down text element
+    const scrollDownText = document.createElement('div');
+    scrollDownText.classList.add('scroll-down-text');
+    scrollDownText.textContent = 'Scroll down';
+    scrollTextContainer.appendChild(scrollDownText);
+
+    // Create the left and right arrows
+    const leftArrow = document.createElement('div');
+    const rightArrow = document.createElement('div');
+    leftArrow.classList.add('arrow', 'left-arrow');
+    rightArrow.classList.add('arrow', 'right-arrow');
+    scrollTextContainer.appendChild(leftArrow);
+    scrollTextContainer.appendChild(rightArrow);
+
+    // Apply the fade-in and fade-out animation
+    scrollTextAnimation = anime({
+        targets: scrollTextContainer,
+        opacity: [0, 1],
+        easing: 'easeInOutQuad',
+        duration: 1000,
+        loop: true,
+        direction: 'alternate',
+    });
+
+    // Position the left and right arrows
+    leftArrow.style.left = '0';
+    rightArrow.style.right = '0';
+
 });
