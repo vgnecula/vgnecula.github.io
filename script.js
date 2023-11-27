@@ -1,3 +1,8 @@
+let currentNameAnimation;
+let currentSubtitleAnimation;
+let animationTimeout;
+let cnt=0;
+
 document.addEventListener('DOMContentLoaded', function () {
     // Intersection Observer for highlighting nav links
     const observer = new IntersectionObserver(handleIntersection, {
@@ -79,8 +84,13 @@ document.addEventListener('DOMContentLoaded', function () {
     function clearNameAndSubtitle() {
         nameElement.innerHTML = '';
         
-        
-    
+        subtitleElement.innerHTML = '';
+        if (currentSubtitleAnimation) {
+            currentSubtitleAnimation.kill();
+            
+            currentSubtitleAnimation = null;
+        }
+
         // Pause and reset the subtitle animation
         if (currentNameAnimation) {
             currentNameAnimation.kill();
@@ -88,11 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
             currentNameAnimation = null;
         }
     
-        if (currentSubtitleAnimation) {
-            currentSubtitleAnimation.kill();
-            
-            currentSubtitleAnimation = null;
-        }
+        nameElement.innerHTML = '';
     
         subtitleElement.innerHTML = '';
     }
@@ -161,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
             currentNameAnimation.kill();
             currentNameAnimation = null;
         }
-        console.log(currentSubtitleAnimation);
+        
         if (currentSubtitleAnimation) {
             currentSubtitleAnimation.kill();
             currentSubtitleAnimation = null;
@@ -175,7 +181,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // Start typing animation for the subtitle with pixelated cursor after a delay
             animationTimeout = setTimeout(() => {
                 subtitleElement.innerHTML = '';
-               
+                
+                console.log(cnt++);
                 currentSubtitleAnimation = animateTextWithCursorInDiv("Student @ Lafayette College", subtitleElement, 1, 18, () => {
                     // Animation for both name and subtitle is complete
                 });
