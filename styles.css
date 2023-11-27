@@ -62,13 +62,13 @@ header {
 .left-arrow {
     border-width: 10px 15px 10px 0;
     border-color: transparent #fff transparent transparent;
-    margin-right: 10px;
+    margin-right: 4px;
 }
 
 .right-arrow {
     border-width: 10px 0 10px 15px;
     border-color: transparent transparent transparent #fff;
-    margin-left: 10px;
+    margin-left: 4px;
 }
 
 
