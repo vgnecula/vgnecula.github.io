@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (anime.running.length) {
             anime.remove(subtitleElement); // Stop subtitle animation if it's running
         }
+        console.log("ASDAS");
         subtitleElement.innerHTML = '';
     }
 
