@@ -80,6 +80,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function clearNameAndSubtitle() {
         nameElement.innerHTML = '';
+        currentNameAnimation.kill();
+        currentSubtitleAnimation.kill();
     
         // Pause and reset the subtitle animation
         if (currentNameAnimation) {
@@ -117,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (targetId === 'home') {
                     // Restart the writing animation
                     clearNameAndSubtitle();
-                    currentWritingAnimation = restartWritingAnimation();
+                    const { currentNameAnimation, currentSubtitleAnimation } = restartWritingAnimation()
                 }  else {
                     // Clear the content of name and subtitle when a different section is in view
                     clearNameAndSubtitle();
@@ -156,11 +158,12 @@ document.addEventListener('DOMContentLoaded', function () {
         clearNameAndSubtitle();
 
         // Terminate existing animations
+        
         if (currentNameAnimation) {
             currentNameAnimation.kill();
             currentNameAnimation = null;
         }
-
+        console.log(currentSubtitleAnimation);
         if (currentSubtitleAnimation) {
             currentSubtitleAnimation.kill();
             currentSubtitleAnimation = null;
@@ -181,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 500); // Adjust the delay as needed
         });
     
-        return { nameAnimation: currentNameAnimation, subtitleAnimation: currentSubtitleAnimation };
+        return { currentNameAnimation, currentSubtitleAnimation };
     }
 
     function highlightNavLink(targetId) {
