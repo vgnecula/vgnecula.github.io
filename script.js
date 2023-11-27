@@ -175,7 +175,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // Start typing animation for the subtitle with pixelated cursor after a delay
             animationTimeout = setTimeout(() => {
                 subtitleElement.innerHTML = '';
-               
+                let cnt=0;
+                console.log(cnt++);
                 currentSubtitleAnimation = animateTextWithCursorInDiv("Student @ Lafayette College", subtitleElement, 1, 18, () => {
                     // Animation for both name and subtitle is complete
                 });
@@ -311,44 +312,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    let currentNameAnimation = null;
-    let currentSubtitleAnimation = null;
-    let scrollTextAnimation = null;
+    const scrollTextContainer = document.querySelector('.scroll-text-container');
+    scrollTextContainer.style.opacity = 0;
 
-
-    // ... (rest of your code)
-
-    // Add a container for the scroll text and arrows
-    const scrollTextContainer = document.createElement('div');
-    scrollTextContainer.classList.add('scroll-text-container');
-    document.body.appendChild(scrollTextContainer);
-
-    // Create the scroll down text element
-    const scrollDownText = document.createElement('div');
-    scrollDownText.classList.add('scroll-down-text');
-    scrollDownText.textContent = 'Scroll down';
-    scrollTextContainer.appendChild(scrollDownText);
-
-    // Create the left and right arrows
-    const leftArrow = document.createElement('div');
-    const rightArrow = document.createElement('div');
-    leftArrow.classList.add('arrow', 'left-arrow');
-    rightArrow.classList.add('arrow', 'right-arrow');
-    scrollTextContainer.appendChild(leftArrow);
-    scrollTextContainer.appendChild(rightArrow);
-
-    // Apply the fade-in and fade-out animation
-    scrollTextAnimation = anime({
-        targets: scrollTextContainer,
-        opacity: [0, 1],
-        easing: 'easeInOutQuad',
-        duration: 1000,
-        loop: true,
-        direction: 'alternate',
+    anime({
+        targets: '.scroll-text-container',
+        opacity: 1,
+        duration: 1000, // Adjust the duration as needed
+        easing: 'easeInOutQuad', // Optional: Choose the easing function
+        delay: 1000, // Optional: Add a delay before the fade-in starts
     });
 
-    // Position the left and right arrows
-    leftArrow.style.left = '0';
-    rightArrow.style.right = '0';
+    setInterval(() => {
+        anime({
+            targets: '.scroll-text-container',
+            opacity: [0, 1],
+            duration: 1000, // Adjust the duration as needed
+            easing: 'easeInOutQuad', // Optional: Choose the easing function
+        });
+    }, 1000);
 
 });
