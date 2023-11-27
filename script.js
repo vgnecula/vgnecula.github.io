@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const pixelCanvas = document.getElementById('pixelCanvas');
     const ctx = pixelCanvas.getContext('2d');
 
-    let currentWritingAnimation = null;
+    let currentNameAnimation = null;
+    let currentSubtitleAnimation = null;
 
     const aboutParticles = document.createElement('div');
     aboutParticles.classList.add('about-particles');
@@ -77,6 +78,36 @@ document.addEventListener('DOMContentLoaded', function () {
         observer.observe(section);
     });
 
+    function clearNameAndSubtitle() {
+        nameElement.innerHTML = '';
+    
+        // Pause and reset the subtitle animation
+        if (currentNameAnimation) {
+            currentNameAnimation.pause();
+            currentNameAnimation.seek(0);
+            currentNameAnimation = null;
+        }
+    
+        if (currentSubtitleAnimation) {
+            currentSubtitleAnimation.pause();
+            currentSubtitleAnimation.seek(0);
+            currentSubtitleAnimation = null;
+        }
+    
+        subtitleElement.innerHTML = '';
+    }
+
+        // Periodically check the current section and clear content if needed
+    setInterval(() => {
+        const currentSection = getCurrentSection();
+        if (currentSection !== 'home') {
+            clearNameAndSubtitle();
+        }
+        
+    }, 500); // Adjust the interval as needed
+
+
+
     function handleIntersection(entries, observer) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -90,11 +121,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }  else {
                     // Clear the content of name and subtitle when a different section is in view
                     clearNameAndSubtitle();
-                    // Terminate the current writing animation if it exists
-                    if (currentWritingAnimation) {
-                        currentWritingAnimation.kill();
-                        currentWritingAnimation = null;  // or .complete() depending on your desired behavior
-                    }
                 }
 
 
@@ -105,26 +131,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-    function clearNameAndSubtitle() {
-        nameElement.innerHTML = '';
-   // Pause and reset the subtitle animation
-        if (currentWritingAnimation) {
-            currentWritingAnimation.pause();
-            currentWritingAnimation.seek(0);
-            currentWritingAnimation = null;
-        }
-        console.log("ASDAS");
-        subtitleElement.innerHTML = '';
-    }
-
-        // Periodically check the current section and clear content if needed
-    setInterval(() => {
-        const currentSection = getCurrentSection();
-        if (currentSection !== 'home') {
-            clearNameAndSubtitle();
-        }
-        
-    }, 500); // Adjust the interval as needed
 
     function getCurrentSection() {
         // Find the section that is currently in view based on scroll position
@@ -149,29 +155,33 @@ document.addEventListener('DOMContentLoaded', function () {
         
         clearNameAndSubtitle();
 
-          // Pause and reset the subtitle animation
-    if (currentWritingAnimation) {
-        currentWritingAnimation.pause();
-        currentWritingAnimation.seek(0);
-        currentWritingAnimation = null;
-    }
-    
+        // Terminate existing animations
+        if (currentNameAnimation) {
+            currentNameAnimation.kill();
+            currentNameAnimation = null;
+        }
+
+        if (currentSubtitleAnimation) {
+            currentSubtitleAnimation.kill();
+            currentSubtitleAnimation = null;
+        }
         // Clear any existing timeout for subtitle animation
         clearTimeout(animationTimeout);
     
 
         // Your code to restart the writing animation here
-        currentWritingAnimation = animateTextWithCursorInDiv("Vladimir Necula", nameElement, 1, 36, () => {
+        currentNameAnimation = animateTextWithCursorInDiv("Vladimir Necula", nameElement, 1, 36, () => {
             // Start typing animation for the subtitle with pixelated cursor after a delay
             animationTimeout = setTimeout(() => {
                 subtitleElement.innerHTML = '';
-                animateTextWithCursorInDiv("Student @ Lafayette College", subtitleElement, 1, 18, () => {
+               
+                currentSubtitleAnimation = animateTextWithCursorInDiv("Student @ Lafayette College", subtitleElement, 1, 18, () => {
                     // Animation for both name and subtitle is complete
                 });
             }, 500); // Adjust the delay as needed
         });
     
-        return currentWritingAnimation;
+        return { nameAnimation: currentNameAnimation, subtitleAnimation: currentSubtitleAnimation };
     }
 
     function highlightNavLink(targetId) {
