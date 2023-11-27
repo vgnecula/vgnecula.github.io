@@ -1,8 +1,3 @@
-let currentNameAnimation;
-let currentSubtitleAnimation;
-let animationTimeout;
-let cnt=0;
-
 document.addEventListener('DOMContentLoaded', function () {
     // Intersection Observer for highlighting nav links
     const observer = new IntersectionObserver(handleIntersection, {
@@ -76,7 +71,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
-
+    nameElement.innerHTML = '';
+        
+    subtitleElement.innerHTML = '';
     sections.forEach(section => {
         observer.observe(section);
     });
@@ -85,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
         nameElement.innerHTML = '';
         
         subtitleElement.innerHTML = '';
+    
         if (currentSubtitleAnimation) {
             currentSubtitleAnimation.kill();
             
@@ -98,9 +96,16 @@ document.addEventListener('DOMContentLoaded', function () {
             currentNameAnimation = null;
         }
     
+        if (currentSubtitleAnimation) {
+            currentSubtitleAnimation.kill();
+            
+            currentSubtitleAnimation = null;
+        }
+
         nameElement.innerHTML = '';
-    
+        
         subtitleElement.innerHTML = '';
+        
     }
 
         // Periodically check the current section and clear content if needed
@@ -155,21 +160,25 @@ document.addEventListener('DOMContentLoaded', function () {
         return 'unknown';
     }
 
+    let animationTimeout;
+
     function restartWritingAnimation() {
         
         clearNameAndSubtitle();
 
         // Terminate existing animations
-        
+        if (currentSubtitleAnimation) {
+            currentSubtitleAnimation.kill();
+            currentSubtitleAnimation = null;
+        }
+
+
         if (currentNameAnimation) {
             currentNameAnimation.kill();
             currentNameAnimation = null;
         }
         
-        if (currentSubtitleAnimation) {
-            currentSubtitleAnimation.kill();
-            currentSubtitleAnimation = null;
-        }
+
         // Clear any existing timeout for subtitle animation
         clearTimeout(animationTimeout);
     
@@ -179,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Start typing animation for the subtitle with pixelated cursor after a delay
             animationTimeout = setTimeout(() => {
                 subtitleElement.innerHTML = '';
-                
+                let cnt=0;
                 console.log(cnt++);
                 currentSubtitleAnimation = animateTextWithCursorInDiv("Student @ Lafayette College", subtitleElement, 1, 18, () => {
                     // Animation for both name and subtitle is complete
@@ -315,6 +324,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
+
     const scrollTextContainer = document.querySelector('.scroll-text-container');
     scrollTextContainer.style.opacity = 0;
 
@@ -330,11 +340,9 @@ document.addEventListener('DOMContentLoaded', function () {
         anime({
             targets: '.scroll-text-container',
             opacity: [0, 1],
-            duration: 2000, // Adjust the duration as needed
+            duration: 1000, // Adjust the duration as needed
             easing: 'easeInOutQuad', // Optional: Choose the easing function
         });
-    }, 2000);
-
-
+    }, 1000);
 
 });
