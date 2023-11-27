@@ -155,8 +155,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return 'unknown';
     }
 
-    let animationTimeout;
-
     function restartWritingAnimation() {
         
         clearNameAndSubtitle();
