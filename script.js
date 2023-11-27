@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function clearNameAndSubtitle() {
         nameElement.innerHTML = '';
         
-        
+        subtitleElement.innerHTML = '';
     
         // Pause and reset the subtitle animation
         if (currentNameAnimation) {
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
             currentSubtitleAnimation = null;
         }
     
-        subtitleElement.innerHTML = '';
+        
     }
 
         // Periodically check the current section and clear content if needed
