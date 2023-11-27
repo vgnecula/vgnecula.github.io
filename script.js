@@ -71,7 +71,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
-
+    nameElement.innerHTML = '';
+        
+    subtitleElement.innerHTML = '';
     sections.forEach(section => {
         observer.observe(section);
     });
@@ -81,6 +83,12 @@ document.addEventListener('DOMContentLoaded', function () {
         
         subtitleElement.innerHTML = '';
     
+        if (currentSubtitleAnimation) {
+            currentSubtitleAnimation.kill();
+            
+            currentSubtitleAnimation = null;
+        }
+
         // Pause and reset the subtitle animation
         if (currentNameAnimation) {
             currentNameAnimation.kill();
@@ -93,7 +101,10 @@ document.addEventListener('DOMContentLoaded', function () {
             
             currentSubtitleAnimation = null;
         }
-    
+
+        nameElement.innerHTML = '';
+        
+        subtitleElement.innerHTML = '';
         
     }
 
@@ -156,16 +167,18 @@ document.addEventListener('DOMContentLoaded', function () {
         clearNameAndSubtitle();
 
         // Terminate existing animations
-        
-        if (currentNameAnimation) {
-            currentNameAnimation.kill();
-            currentNameAnimation = null;
-        }
-        console.log(currentSubtitleAnimation);
         if (currentSubtitleAnimation) {
             currentSubtitleAnimation.kill();
             currentSubtitleAnimation = null;
         }
+
+
+        if (currentNameAnimation) {
+            currentNameAnimation.kill();
+            currentNameAnimation = null;
+        }
+        
+
         // Clear any existing timeout for subtitle animation
         clearTimeout(animationTimeout);
     
