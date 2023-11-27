@@ -102,8 +102,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     // About section is in view, start the particle animation
                     animateParticles();
                 }
-
-                console.log(currentWritingAnimation);
             }
         });
     }
@@ -119,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
             clearNameAndSubtitle();
         }
         
-    }, 10); // Adjust the interval as needed
+    }, 500); // Adjust the interval as needed
 
     function getCurrentSection() {
         // Find the section that is currently in view based on scroll position
@@ -138,19 +136,25 @@ document.addEventListener('DOMContentLoaded', function () {
         return 'unknown';
     }
 
-
+    let animationTimeout;
 
     function restartWritingAnimation() {
         
         clearNameAndSubtitle();
 
+        clearTimeout(animationTimeout);
+
         // Your code to restart the writing animation here
-        animateTextWithCursorInDiv("Vladimir Necula", nameElement, 1, 36, () => {
+        currentWritingAnimation = animateTextWithCursorInDiv("Vladimir Necula", nameElement, 1, 36, () => {
             // Start typing animation for the subtitle with pixelated cursor after a delay
-            animateTextWithCursorInDiv("Student @ Lafayette College", subtitleElement, 1, 18, () => {
-                // Animation for both name and subtitle is complete
-            });
+            animationTimeout = setTimeout(() => {
+                animateTextWithCursorInDiv("Student @ Lafayette College", subtitleElement, 1, 18, () => {
+                    // Animation for both name and subtitle is complete
+                });
+            }, 500); // Adjust the delay as needed
         });
+    
+        return currentWritingAnimation;
     }
 
     function highlightNavLink(targetId) {
