@@ -37,6 +37,33 @@ header {
     background: url('background.gif') center/cover no-repeat fixed;
 }
 
+
+.scroll-down-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.arrow-container {
+    margin-top: 10px;
+}
+
+.arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.arrow-down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+
+
 #about {
     position: relative; /* Make it relative to contain absolute particles */
     overflow: hidden; 
