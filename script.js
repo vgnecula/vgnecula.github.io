@@ -142,13 +142,9 @@ document.addEventListener('DOMContentLoaded', function () {
         
         clearNameAndSubtitle();
 
-        if (currentWritingAnimation) {
-            currentWritingAnimation.kill();
-            currentWritingAnimation = null;
-        }
-
         clearTimeout(animationTimeout);
 
+        
 
         // Your code to restart the writing animation here
         currentWritingAnimation = animateTextWithCursorInDiv("Vladimir Necula", nameElement, 1, 36, () => {
