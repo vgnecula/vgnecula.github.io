@@ -305,26 +305,4 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    const scrollTextContainer = document.querySelector('.scroll-text-container');
-    scrollTextContainer.style.opacity = 0;
-
-    anime({
-        targets: '.scroll-text-container',
-        opacity: 1,
-        duration: 1000, // Adjust the duration as needed
-        easing: 'easeInOutQuad', // Optional: Choose the easing function
-        delay: 1000, // Optional: Add a delay before the fade-in starts
-    });
-
-    setInterval(() => {
-        anime({
-            targets: '.scroll-text-container',
-            opacity: [0, 1],
-            duration: 2000, // Adjust the duration as needed
-            easing: 'easeInOutQuad', // Optional: Choose the easing function
-        });
-    }, 2000);
-
-
-
 });
