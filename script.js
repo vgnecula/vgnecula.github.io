@@ -71,9 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
-    nameElement.innerHTML = '';
-        
-    subtitleElement.innerHTML = '';
+
     sections.forEach(section => {
         observer.observe(section);
     });
@@ -81,9 +79,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function clearNameAndSubtitle() {
         nameElement.innerHTML = '';
         
-        subtitleElement.innerHTML = '';
-
-
+        
+    
         // Pause and reset the subtitle animation
         if (currentNameAnimation) {
             currentNameAnimation.kill();
@@ -96,11 +93,8 @@ document.addEventListener('DOMContentLoaded', function () {
             
             currentSubtitleAnimation = null;
         }
-
-        nameElement.innerHTML = '';
-        
+    
         subtitleElement.innerHTML = '';
-        
     }
 
         // Periodically check the current section and clear content if needed
@@ -162,18 +156,16 @@ document.addEventListener('DOMContentLoaded', function () {
         clearNameAndSubtitle();
 
         // Terminate existing animations
-        if (currentSubtitleAnimation) {
-            currentSubtitleAnimation.kill();
-            currentSubtitleAnimation = null;
-        }
-
-
+        
         if (currentNameAnimation) {
             currentNameAnimation.kill();
             currentNameAnimation = null;
         }
-        
-
+        console.log(currentSubtitleAnimation);
+        if (currentSubtitleAnimation) {
+            currentSubtitleAnimation.kill();
+            currentSubtitleAnimation = null;
+        }
         // Clear any existing timeout for subtitle animation
         clearTimeout(animationTimeout);
     
@@ -183,8 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Start typing animation for the subtitle with pixelated cursor after a delay
             animationTimeout = setTimeout(() => {
                 subtitleElement.innerHTML = '';
-                let cnt=0;
-                console.log(cnt++);
+               
                 currentSubtitleAnimation = animateTextWithCursorInDiv("Student @ Lafayette College", subtitleElement, 1, 18, () => {
                     // Animation for both name and subtitle is complete
                 });
@@ -319,7 +310,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-
     const scrollTextContainer = document.querySelector('.scroll-text-container');
     scrollTextContainer.style.opacity = 0;
 
@@ -339,5 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
             easing: 'easeInOutQuad', // Optional: Choose the easing function
         });
     }, 1000);
+
+
 
 });
