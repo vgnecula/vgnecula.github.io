@@ -83,24 +83,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function clearNameAndSubtitle() {
         nameElement.innerHTML = '';
-        
         subtitleElement.innerHTML = '';
-        if (currentSubtitleAnimation) {
-            currentSubtitleAnimation.kill();
-            
-            currentSubtitleAnimation = null;
-        }
-
-        // Pause and reset the subtitle animation
+    
         if (currentNameAnimation) {
-            currentNameAnimation.kill();
-            
-            currentNameAnimation = null;
+            currentNameAnimation.stopAnimation();
         }
     
-        nameElement.innerHTML = '';
+        if (currentSubtitleAnimation) {
+            currentSubtitleAnimation.stopAnimation();
+        }
     
-        subtitleElement.innerHTML = '';
+        console.log("kiki");
     }
 
         // Periodically check the current section and clear content if needed
@@ -158,25 +151,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function restartWritingAnimation() {
         
         clearNameAndSubtitle();
-
-        // Terminate existing animations
-        
-        if (currentNameAnimation) {
-            currentNameAnimation.kill();
-            currentNameAnimation = null;
-        }
-        
-        if (currentSubtitleAnimation) {
-            currentSubtitleAnimation.kill();
-            currentSubtitleAnimation = null;
-        }
         // Clear any existing timeout for subtitle animation
         clearTimeout(animationTimeout);
     
 
         // Your code to restart the writing animation here
-        currentNameAnimation = animateTextWithCursorInDiv("Vladimir Necula", nameElement, 1, 36, () => {
+        currentNameAnimation  = animateTextWithCursorInDiv("Vladimir Necula", nameElement, 1, 36, () => {
             // Start typing animation for the subtitle with pixelated cursor after a delay
+
             animationTimeout = setTimeout(() => {
                 subtitleElement.innerHTML = '';
                 
@@ -186,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             }, 500); // Adjust the delay as needed
         });
-    
+        
         return { currentNameAnimation, currentSubtitleAnimation };
     }
 
@@ -208,56 +190,64 @@ document.addEventListener('DOMContentLoaded', function () {
         let cursorX = element.offsetLeft + element.offsetWidth; // Initialize cursor position at the end of the text
         let cursorY = element.offsetTop + element.offsetHeight / 2; // Initialize cursor Y position
         let cursorVisible = true;
-
+        let animationRunning = true; // Flag to control animation
+    
+        function stopAnimation() {
+            animationRunning = false;
+        }
+    
         function typeNextLetter() {
-            if (index < text.length) {
+            if (animationRunning && index < text.length) {
                 // Clear the entire canvas before drawing the new text and cursor
                 clearCanvas();
-
+    
                 // Create a span for the current letter
                 const span = document.createElement('span');
                 span.textContent = text[index];
-
+    
                 // Set the font size for the span based on the element type
                 span.style.fontSize = `${fontSize}px`;
-
+    
                 // Append the span to the element
                 element.appendChild(span);
-
+    
                 // Get the position of the last letter in the div
                 const lastLetterRect = span.getBoundingClientRect();
                 const lastLetterLeft = lastLetterRect.left + window.scrollX;
                 const lastLetterTop = lastLetterRect.top + window.scrollY;
-
+    
                 // Update cursor position based on the last letter
                 cursorX = lastLetterLeft + lastLetterRect.width + 10;
                 cursorY = lastLetterTop + lastLetterRect.height / 2;
-
+    
                 // Draw cursor
                 drawCursor(cursorX, cursorY, cursorVisible, fontSize);
-
+    
                 cursorVisible = !cursorVisible;
-
+    
                 setTimeout(() => {
                     requestAnimationFrame(typeNextLetter);
                 }, 80); // Adjust the delay between letters
-
+    
                 index++;
             } else {
                 // Reset cursor visibility after the text is fully typed
                 cursorVisible = true;
-
+    
                 drawCursor(cursorX, cursorY, cursorVisible);
-
+    
                 clearCanvas();
                 callback();
             }
         }
-
+    
         // Start typing animation after a short delay
         setTimeout(() => {
             typeNextLetter();
         }, 100); // Adjust the delay as needed
+    
+        // Expose the stopAnimation function
+        return { stopAnimation };
     }
 
     function clearCanvas() {
