@@ -53,7 +53,7 @@
 #about .content {
     z-index: 2;
     position: relative;
-    padding-top: 10%;
+    padding-top: 5%;
     padding-bottom: 10%;
     padding-left: 5%;
     padding-right: 5%; /* Make content relative to allow stacking within #about */
@@ -154,4 +154,11 @@
         width: 10%; /* Adjust the width percentage as needed */
      
     }
+}
+
+#pixelImage {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
