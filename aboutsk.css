@@ -1,0 +1,84 @@
+#about {
+    position: relative;
+    overflow: hidden;
+    background: black;
+    padding: 20px; /* Add padding to create space between the container edges and the content */
+}
+
+.about-content p {
+    line-height: 1.5; /* Adjust the line-height as needed */
+    text-align: justify;
+}
+
+.about-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#about .content {
+    z-index: 2;
+    position: relative;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 5%;
+    padding-right: 5%; /* Make content relative to allow stacking within #about */
+}
+
+.about-content {
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.5; /* Adjust the line-height as needed */
+    text-align: justify;
+    z-index: 3;
+}
+
+.about-title,
+.about-content,
+.about-container {
+    position: relative; /* Adjust positioning */
+}
+
+.about-title {
+    
+    color: #fff;
+    font-size: 36px;
+    z-index: 3;
+    margin-bottom: 10px; /* Add margin to separate title from content */
+}
+
+.about-content {
+    color: #fff;
+    font-size: 18px;
+    z-index: 3;
+}
+
+#about .about-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.divider-line {
+    width: 100%;
+    border-top: 1px solid #ddd;
+    position: absolute;
+    top: 50%; /* Position it in the middle vertically */
+    transform: translateY(-50%);
+    z-index: 1; /* Ensure the line is behind the sections */
+}
+
+.pixel-window {
+    border: 4px solid #000;
+    padding: 10px;
+    background-color: white;
+    width: 200px;
+    display: inline-block;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    z-index: 2; /* Ensure the sections are on top of the line */
+}

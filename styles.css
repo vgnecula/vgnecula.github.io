@@ -17,7 +17,7 @@ body, html {
     height: 100%; /* Set each section to full viewport height */
     scroll-snap-align: start;
     position: relative;
-    display: flex;
+
     justify-content: center;
     align-items: center;
 }
@@ -64,46 +64,6 @@ header {
     border-width: 10px 0 10px 15px;
     border-color: transparent transparent transparent #fff;
     margin-left: 4px;
-}
-
-
-
-#about {
-    position: relative; /* Make it relative to contain absolute particles */
-    overflow: hidden; 
-    background: black;/* Hide overflowing particles */
-}
-
-.about-particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-#about .content {
-    z-index: 2;
-}
-
-.about-title {
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    color: #fff;
-    font-size: 36px;
-    z-index: 3;
-}
-
-.about-content {
-    position: absolute;
-    top: 20%;
-    left: 10%;
-    color: #fff;
-    font-size: 18px;
-    width: 80%;
-    z-index: 3;
 }
 
 
