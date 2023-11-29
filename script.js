@@ -291,18 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Additional: Update navbar underline on scroll
-    document.addEventListener('scroll', function () {
-        const scrollPosition = window.scrollY || document.documentElement.scrollTop;
 
-        sections.forEach(section => {
-            const targetId = section.getAttribute('id');
-            const targetElement = document.getElementById(targetId);
-
-            if (targetElement.offsetTop <= scrollPosition && targetElement.offsetTop + targetElement.offsetHeight > scrollPosition) {
-                highlightNavLink(targetId);
-            }
-        });
-    });
 
 
 });

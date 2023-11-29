@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
             aboutTitle.textContent = 'About' + '.'.repeat(dots-1);
             
             dots = (dots % maxDots)+1;
-            console.log(dots);
+           
         }
 
         setInterval(updateTitle, 500); // Adjust the interval as needed
