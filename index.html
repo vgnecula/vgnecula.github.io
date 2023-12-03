@@ -47,41 +47,61 @@
                         <p>My name is Vladimir George Necula and I am an international student at Lafayette College. Currently, I am in my freshman year, trying to leverage my knowledge in all possible fields by creating side projects such as this website. I am very interested in everything that is related to Computer Science, Electrical and Computer Engineering, Mathematics and Economics. </p>
                         <p>I created this section, to give you some background about myself. You can feel free to drag the sections around. I wanted to add this feature to show that success is not a linear process, and everybody will experience different opportunities and successes in various orders.</p>
                     </div>
-                    
-                    <div class="about-container">
+                
+                    <div class="about-background">
+                        <div class="about-container">
+                            <!-- Folders go here -->
+                            <div class="folder" id="about-section-1-folder">
+                                <img src="folder.png" alt="Folder Icon" class="folder-icon">
+                                <span class="folder-name">Medals</span>
+                            </div>
+                            
+                            <div class="folder" id="about-section-2-folder">
+                                <img src="folder.png" alt="Folder Icon" class="folder-icon">
+                                <span class="folder-name">Satellite</span>
+                            </div>
+                            <div class="folder" id="about-section-3-folder">
+                                <img src="folder.png" alt="Folder Icon" class="folder-icon">
+                                <span class="folder-name">NSS</span>
+                            </div>
+                            
+                            <div class="folder" id="about-section-4-folder">
+                                <img src="folder.png" alt="Folder Icon" class="folder-icon">
+                                <span class="folder-name">Research</span>
+                            </div>
                         
+                            <div class="pixel-window" id="about-section-1">
+                                <h1>Multiple medalist at international contests and olympiads</h1>
+                                <p>Since I was in middle school I started participating in various contests and olympiads in computer science, math, physics and astrophysics. This enabled be to reach international level during my high school years, representing my country at prestigious contests.</p>
+                                <img id="pixelImage" src="ioaa.jpg" alt="Pixel Image">
+                            </div>
+                        
+                            <div class="pixel-window" id="about-section-2">
+                                <h1>Launched ROM-2 with SpaceX</h1>
+                                <p>At RomSpace, I worked on "SpaceSparrow" picosatellite as an electrical engineer, under the ROM-2 mission. We successfully launched our picosatellite in space with SpaceX during the summer of 2023, making it the first romanian satellite to transmite data from space back to Earth ever.</p>
+                                <img id="pixelImage" src="satelite.jpg" alt="Pixel Image">
+                            </div>
+
+                            <div class="pixel-window" id="about-section-3">
+                                <h1>Prize winner of the NSS Space Settlement Contest</h1>
+                                <p>Won the second prize in the contest and then presented my projcect during International Space Development Conference.</p>
+                                <img id="pixelImage" src="nss.jpg" alt="Pixel Image">
+                            </div>
+                            <div class="pixel-window" id="about-section-4">
+                                <h1>Wrote a research paper about galaxy clusters</h1>
+                                <p>As an assistant at the Institute of Space Science Bucharest, I wrote a comperhensive research paper about finding galaxy clusters using complex machine learning algorithms.</p>
+                                <img id="pixelImage" src="issb.png" alt="Pixel Image">
+                            </div>
+                        </div>
+                        <div class="pc-image-container">
+                            <img src="pc(1).png" alt="PC Image" class="pc-image">
+                            
+                        </div>
                         
 
-                        <div class="pixel-window" id="about-section-1">
-                            <h2>Multiple Medalist at IOAA</h2>
-                            <p>Represented my country and won multiple medals and distinctions at the 2020, 2021, 2022 and 2023 editions of the Olympiad.</p>
-                            <img id="pixelImage" src="ioaa.jpg" alt="Pixel Image">
-                        </div>
-        
-                        <!-- Section 2 -->
-                        <div class="pixel-window" id="about-section-2">
-                            <h2>Launched ROM-2 with SpaceX</h2>
-                            <p>Worked as the Electrical Engineer for the Romspace Team, building the second ever romanian satellite.</p>
-                            <img id="pixelImage" src="satelite.jpg" alt="Pixel Image">
-                        </div>
-    
                         
-                        <div class="pixel-window" id="about-section-2">
-                            <h2>Prize winner of the NSS Space Settlement Contest</h2>
-                            <p>Won the second prize in the contest and presented my project during ISDC.</p>
-                            <img id="pixelImage" src="nss.jpg" alt="Pixel Image">
-                        </div>
-                        
-                        <div class="pixel-window" id="about-section-2">
-                            <h2>Assistant at Institute of Space Science</h2>
-                            <p>Wrote a research paper about finding galaxy clusters using complex machine learning algorithms.</p>
-                            <img id="pixelImage" src="issb.png" alt="Pixel Image">
-                        </div>
-
                     </div>
-                
-                </div>
-                
+                    
             
         </section>
 
@@ -91,6 +111,15 @@
             <p>sdeewqasss</p>
         </section>
     </div>
+
+    <div id="modal-overlay">
+        <div class="modal">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    
     <script src="about-dots.js"></script>
     <script src="drag-about.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>

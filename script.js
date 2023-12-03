@@ -21,60 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const aboutParticles = document.createElement('div');
     aboutParticles.classList.add('about-particles');
     document.getElementById('about').appendChild(aboutParticles);
-
-    function animateParticles() {
-        const particleCount = 100; // Adjust the number of particles
-        for (let i = 0; i < particleCount; i++) {
-            createParticle();
-        }
-    }
-
-    function createParticle() {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        const size = Math.random() * 5 + 1; // Random size between 1 and 6
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.background = '#42a5f5'; // Particle color
-        particle.style.position = 'absolute';
-
-        const startLeft = Math.random() * window.innerWidth;
-        const startTop = Math.random() * window.innerHeight;
-
-        particle.style.left = `${startLeft}px`;
-        particle.style.top = `${startTop}px`;
-
-        aboutParticles.appendChild(particle);
-
-        // Animation
-        anime({
-            targets: particle,
-            translateX: Math.random() * 200 - 100, // Random horizontal movement
-            translateY: Math.random() * -100 - 50, // Random vertical movement
-            opacity: 0, // Fade out
-            easing: 'easeOutQuad',
-            duration: 2000, // Animation duration
-            complete: function () {
-                aboutParticles.removeChild(particle);
-            },
-        });
-    }
-
-    // Intersection Observer for triggering particle animation
-    const aboutObserver = new IntersectionObserver(handleAboutIntersection, {
-        threshold: 0.5,
-    });
-
-    aboutObserver.observe(document.getElementById('about'));
-
-    function handleAboutIntersection(entries, observer) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateParticles();
-                aboutObserver.unobserve(entry.target); // Stop observing after triggering animation
-            }
-        });
-    }
     
 
     sections.forEach(section => {
@@ -105,11 +51,12 @@ document.addEventListener('DOMContentLoaded', function () {
         
     }, 500); // Adjust the interval as needed
 
-
+    
 
     function handleIntersection(entries, observer) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                removeAllParticles();
                 const targetId = entry.target.getAttribute('id');
                 highlightNavLink(targetId);
 
@@ -290,8 +237,149 @@ document.addEventListener('DOMContentLoaded', function () {
         event.target.classList.add('underline');
     }
 
-    // Additional: Update navbar underline on scroll
 
+    
+
+    const particles = [];
+    const maxParticles = 300; // Set the maximum number of particles
+    
+    // Function to remove particles
+    function removeAllParticles() {
+        particles.forEach(particle => {
+            aboutParticles.removeChild(particle.element);
+        });
+        particles.length = 0; // Clear the particles array
+    }
+    
+    // Expose the removeParticles function
+    window.removeParticles = removeAllParticles;
+    
+    // Additional: Update navbar underline on scroll
+    function animateParticles() {
+        // Ensure that the number of particles does not exceed the maximum
+        const particleCount = Math.min(maxParticles, particles.length);
+    
+        for (let i = 0; i < particleCount; i++) {
+            const particle = particles[i];
+            animateParticle(particle);
+        }
+    
+        // Create new particles if the count is below the maximum
+        while (particles.length < maxParticles) {
+            const particle = createParticle();
+            particles.push(particle);
+            animateParticle(particle);
+        }
+    
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            const size = Math.random() * 5 + 1; // Random size between 1 and 6
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.background = getRandomColor(); // Get a random color
+            particle.style.position = 'absolute';
+            particle.style.opacity = '0'; // Set initial opacity to 0
+    
+            // Generate initial velocities with a wider range
+            const velocityX = Math.random() * 8 - 4; // Random horizontal movement between -4 and 4
+            const velocityY = Math.random() * 8 - 4; // Random vertical movement between -4 and 4
+    
+            particle.velocity = { x: velocityX, y: velocityY };
+    
+            const startLeft = Math.random() * window.innerWidth;
+            const startTop = Math.random() * window.innerHeight;
+    
+            particle.style.left = `${startLeft}px`;
+            particle.style.top = `${startTop}px`;
+    
+            // Append the particle directly to the aboutParticles element
+            aboutParticles.appendChild(particle);
+    
+            return {
+                element: particle,
+                velocity: particle.velocity,
+            };
+        }
+    
+        function animateParticle(particle) {
+            particle.element.style.opacity = '0'; // Set initial opacity to 0
+    
+            const fadeSpeed = 0.1; // Adjust the fade speed
+            const slowdownFactor = 0.995; // Adjust the slowdown factor
+    
+            function update() {
+                const deltaX = particle.velocity.x;
+                const deltaY = particle.velocity.y;
+            
+                const rect = particle.element.getBoundingClientRect();
+                let newX = rect.left + deltaX;
+                let newY = rect.top + deltaY;
+            
+                // Reset position if out of bounds
+                if (newX < 0 || newX > window.innerWidth || newY < 0 || newY > window.innerHeight) {
+                    // Remove the particle from the DOM only if it's still a child of aboutParticles
+                    if (particle.element.parentNode === aboutParticles) {
+                        aboutParticles.removeChild(particle.element);
+            
+                        // Find the index of the particle in the array
+                        const particleIndex = particles.findIndex(p => p === particle);
+            
+                        if (particleIndex !== -1) {
+                            // Remove the particle from the array
+                            particles.splice(particleIndex, 1);
+                        }
+            
+                        // Create a new particle and add it to the array
+                        const newParticle = createParticle();
+                        particles.push(newParticle);
+                        animateParticle(newParticle);
+                    }
+            
+                    return; // Skip the rest of the update for this frame
+                }
+            
+                particle.element.style.left = `${newX}px`;
+                particle.element.style.top = `${newY}px`;
+            
+                // Quick fade-in effect on the first appearance
+                if (parseFloat(particle.element.style.opacity) < 1) {
+                    particle.element.style.opacity = `${parseFloat(particle.element.style.opacity) + fadeSpeed}`;
+                }
+            
+                // Apply slowdown effect
+                particle.velocity.x *= slowdownFactor;
+                particle.velocity.y *= slowdownFactor;
+            
+                // Randomly reset particle's velocity and opacity
+                if (Math.random() < 0.01) {
+                    particle.velocity.x = Math.random() * 4 - 2;
+                    particle.velocity.y = Math.random() * 4 - 2;
+                    particle.element.style.opacity = '0';
+                }
+            
+                requestAnimationFrame(update);
+            }
+            
+    
+            // Start the animation loop
+            requestAnimationFrame(update);
+        }
+    
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    }
+    
+    
+    
+   
+    
 
 
 });
