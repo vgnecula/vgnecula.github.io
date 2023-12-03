@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const aboutParticles = document.createElement('div');
     aboutParticles.classList.add('about-particles');
     document.getElementById('about').appendChild(aboutParticles);
-    
+   
 
     sections.forEach(section => {
         observer.observe(section);
