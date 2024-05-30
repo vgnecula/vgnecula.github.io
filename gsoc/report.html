@@ -1,11 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSoC Report 2024: Efficient Volume Computation</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
 <body>
 
-<h2>HTML Images</h2>
-<p>HTML images are defined with the img tag:</p>
+<header>
+    <h1>GSoC Report 2024: Efficient Volume Computation</h1>
+    <h4>Author: Vladimir Necula</h4>
+</header>
 
-<img src="w3schools.jpg" alt="W3Schools.com" width="104" height="142">
+<nav aria-label="Main Navigation">
+    <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#progress">Weekly Progress</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>This report is the final deliverable for GSoC 2024, showcasing my contributions within GeomScale.</p>
+        <p>Current algorithms for volume computation of high-dimensional convex bodies, like those used in the VolEsti package, utilize uniform sampling techniques. This project aims to develop a more efficient algorithm by utilizing advancements in non-uniform sampling techniques.</p>
+        <p>The proposed Hamiltonian Monte Carlo (HMC) methods, as highlighted by Pakman and Paninski, are especially suitable for handling truncated multivariate distributions, a common challenge in high-dimensional contexts. Integration with the VolEsti package will use C++, aligning with high-performance mathematical software development best practices as discussed by Fisikopoulos et al.</p>
+    </section>
+
+    <section id="progress">
+        <h3>Weekly Progress</h3>
+        <ul>
+            <li>
+                <strong>Week 1:</strong>
+                <ul>
+                    <li>Task 1: Integration of Gaussian HMC within the Cooling Gaussian Algorithm.</li>
+                    <li>Task 2: Documentation of integration steps and initial testing.</li>
+                </ul>
+            </li>
+            <!-- More weekly entries can be added here -->
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>© 2024 Vladimir Necula. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
