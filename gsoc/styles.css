@@ -94,10 +94,6 @@ footer {
     margin-bottom: 10px;
 }
 
-.pr-description {
-    color: #666;
-}
-
 .pr-header {
     display: flex;
     justify-content: space-between;
@@ -105,10 +101,8 @@ footer {
     margin-bottom: 10px;
 }
 
-.pr-link {
-    font-weight: bold;
-    color: #007bff;
-    text-decoration: none;
+.pr-description {
+    color: #666;
 }
 
 .pr-status {
@@ -126,8 +120,4 @@ footer {
 .pr-status.open {
     background-color: #ffc107;
     color: black;
-}
-
-.pr-description {
-    color: #666;
 }
