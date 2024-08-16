@@ -12,35 +12,56 @@
 <header>
     <h1>GSoC Report 2024: Efficient Volume Computation</h1>
     <h4>Author: Vladimir Necula</h4>
+    <h5>Organization: GeomScale</h5>
+    <h5>Mentors: Vissarion Fisikopoulos, Apostolos Chalkis</h5>
 </header>
 
 <nav aria-label="Main Navigation">
     <ul>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#progress">Weekly Progress</a></li>
+        <li><a href="#Overview">Overview</a></li>
+        <li><a href="#pull-requests">Pull Requests</a></li>
     </ul>
 </nav>
 
 <main>
-    <section id="introduction">
-        <h2>Introduction</h2>
+    <section id="Overview">
+        <h2>Overview</h2>
         <p>This report is the final deliverable for GSoC 2024, showcasing my contributions within GeomScale.</p>
-        <p>Current algorithms for volume computation of high-dimensional convex bodies, like those used in the VolEsti package, utilize uniform sampling techniques. This project aims to develop a more efficient algorithm by utilizing advancements in non-uniform sampling techniques.</p>
-        <p>The proposed Hamiltonian Monte Carlo (HMC) methods, as highlighted by Pakman and Paninski, are especially suitable for handling truncated multivariate distributions, a common challenge in high-dimensional contexts. Integration with the VolEsti package will use C++, aligning with high-performance mathematical software development best practices as discussed by Fisikopoulos et al.</p>
+        <p>My work was focused on implementing and enhancing volume computation techniques for developing a more efficient algorithm by utilizing advancements in non-uniform sampling techniques.</p>
     </section>
 
-    <section id="progress">
-        <h3>Weekly Progress</h3>
-        <ul>
-            <li>
-                <strong>Week 1:</strong>
-                <ul>
-                    <li>Task 1: Integration of Gaussian HMC within the Cooling Gaussian Algorithm.</li>
-                    <li>Task 2: Documentation of integration steps and initial testing.</li>
-                </ul>
-            </li>
-            <!-- More weekly entries can be added here -->
-        </ul>
+    <section id="pull-requests">
+        <h3>Pull Requests</h3>
+        <div class="pr-container">
+            <div class="pr-item">
+                <div class="pr-header">
+                    <a href="https://github.com/GeomScale/volesti/pull/307" target="_blank" class="pr-link">#307: update_position complexity improvement</a>
+                    <span class="pr-status merged">Merged</span>
+                </div>
+                <p class="pr-description">Optimized memory allocation and improved performance of the update_position function.</p>
+            </div>
+            <div class="pr-item">
+                <div class="pr-header">
+                    <a href="https://github.com/GeomScale/volesti/pull/308" target="_blank" class="pr-link">#308: Position Nudging after Position Update</a>
+                    <span class="pr-status merged">Merged</span>
+                </div>
+                <p class="pr-description">Implementation of a nudge_in function to ensure proper reflection process within Gaussian HMC.</p>
+            </div>
+            <div class="pr-item">
+                <div class="pr-header">
+                    <a href="https://github.com/GeomScale/volesti/pull/314" target="_blank" class="pr-link">#314: CRHMC Integration within Volume Cooling Gaussians</a>
+                    <span class="pr-status merged">Merged</span>
+                </div>
+                <p class="pr-description">Constrained Riemannian HMC for volume computation with cooling spherical gaussians.</p>
+            </div>
+            <div class="pr-item">
+                <div class="pr-header">
+                    <a href="https://github.com/GeomScale/volesti/pull/330" target="_blank" class="pr-link">#330: CRHMC Integration within Volume Cooling Gaussians</a>
+                    <span class="pr-status open">Open</span>
+                </div>
+                <p class="pr-description">Constrained Riemannian HMC for volume computation with cooling non-spherical gaussians</p>
+            </div>
+        </div>
     </section>
 </main>
 
