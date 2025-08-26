@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSoC Report 2025: Sparse Polytope Sampling via Lazy Rounding</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+<header>
+    <h1>GSoC Report 2025: Sparse Polytope Sampling via Lazy Rounding</h1>
+    <h4>Author: Vladimir Necula</h4>
+    <h5>Organization: GeomScale</h5>
+    <h5>Mentors: Elias Tsigaridas, Matías Bender, Luca Perju</h5>
+</header>
+
+<nav aria-label="Main Navigation">
+    <ul>
+        <li><a href="#Overview">Overview</a></li>
+        <li><a href="#pull-requests">Pull Requests</a></li>
+        <li><a href="#acknowledgements">Acknowledgements</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="Overview">
+        <h2>Overview</h2>
+        <p>This report is the final deliverable for GSoC 2025, showcasing my contributions within GeomScale.</p>
+        <p>My work was focused on implementing and benchmarking a sparse variant of the billiard walk sampling algorithm, leveraging lazy Cholesky-based solutions while preserving sparsity throughout rounding and sampling operations.
+        The work is intended to enable efficient sampling in high-dimensional convex polytopes with sparse constraints. </p>
+    </section>
+
+    <section id="pull-requests">
+        <h2>Pull Requests</h2>
+        <div class="pr-container">
+            <div class="pr-item">
+                <div class="pr-header">
+                    <a href="https://github.com/GeomScale/volesti/pull/363" target="_blank" class="pr-link">
+                        #363: Sparse Uniform Billiard Walk Benchmark
+                    </a>
+                    <span class="pr-status unmerged">Unmerged</span>
+                </div>
+                <p class="pr-description">
+                    Full Implementation: Benchmark and Sparse Billiard Walk.
+                </p>
+                <div class="pr-files">
+                    <h4>Key Files:</h4>
+                    <ul>
+                        <li><code>sparse_billiard_walk_benchmark.cpp</code></li>
+                        <li><code>sparse_uniform_billiard_walk.h</code></li>
+                        <li><code>hpolytope.h</code> (modified)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+
+    <section id="acknowledgements">
+        <h2>Acknowledgements</h2>
+        <p>I would like to express my sincere gratitude to the GeomScale organization for providing me with this incredible opportunity to contribute to their project. Thus, I want to thank my project mentors, whose guidance and support were invaluable throughout this experience.</p>
+        <p>Lastly, I want to thank Google for organizing the Google Summer of Code program. It was an incredible experience and I am so grateful for it. Having the opportunity to be immersed in the world of open-source software development, while being mentored by members of impressive organizations was an invaluable experience that enhanced my theoretical and collaborative skills.</p>
+    </section>
+</main>
+
+<footer>
+    <p>© 2025 Vladimir Necula. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
